@@ -1,18 +1,20 @@
 #include <iostream>
+#include <set>
 using namespace std;
 
-int total, garbage;
-
 int main(){
-    cin >> total;
-    int gar[total] = {0};
+    int n;
+    set<int> s;
+    cin >> n;
+    for(int i = 1; i <= n; i++)
+        s.insert(i);
+
     for(int i = 0; i < 3; i++){
-        cin >> garbage;
-        gar[garbage-1] = 1;
+        int tmp;
+        cin >> tmp;
+        s.erase(tmp);
     }
 
-    for(int i = total; i >= 1; i--){
-        if(gar[i-1] == 0)
-            cout << "No. " << i << endl;
-    }
+    for(auto i = s.rbegin(); i != s.rend(); i++)
+        cout << "No. " << *i << "\n";
 }
