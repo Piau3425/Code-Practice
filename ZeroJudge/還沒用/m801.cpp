@@ -13,12 +13,6 @@ int main(){
             return 0;
         }
     }
-    
-    /*stack<char> tmp = s;
-    for(; !s.empty();){
-        cout << tmp.top();
-        tmp.pop();
-    }*/
 
     if(input == string(input.rbegin(), input.rend()))
         cout << "Yes";
