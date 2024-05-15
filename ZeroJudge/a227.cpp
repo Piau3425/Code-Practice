@@ -13,7 +13,7 @@ void Towers(int n, char a, char b, char c){
 }
 int main() {
 	int n;
-	while(cin >> n && !cin.eof()){
+	while(cin >> n){
 	    Towers(n,'A','B','C');
 	    cout << endl;
     }
