@@ -1,29 +1,19 @@
 #include <iostream>
-#include <vector>
-#include <iomanip>
-#include <cmath>
-#include <string>
+#include <locale> // 包含 locale 標頭檔
+#include <codecvt> // 包含 codecvt 標頭檔
+
 using namespace std;
 
-struct my_struct{
-    int x;
-    double y;
-    string s;
-	my_struct(){ // 多寫的預設建構子
-		x = 45;
-		y = 1.23;
-		s = "sdaf";
-	}
-	my_struct(int a,double b,string c){
-		x = a;
-		y = b;
-		s = c;
-	}
-};//要有分號
+int main() {
+    // 設置 locale 為系統默認的 locale
+    locale loc("");
+    wcout.imbue(loc);
 
-int main(){
-    my_struct a;
-	my_struct b(45,45.45455,"sdfsd");
-    cout<<a.x<<" \n"<<a.y<<" \n"<<a.s<<'\n';
-    cout<<b.x<<" \n"<<b.y<<" \n"<<b.s<<'\n';
+    // 將 char* 轉換為 wchar_t*，這樣可以正確處理中文字符
+    wchar_t a[12] = {L"數"};
+
+    // 使用 wcout 來輸出 wchar_t* 陣列中的內容
+    wcout << a[0] << endl;
+
+    return 0;
 }

@@ -8,12 +8,12 @@ int main(){
     while(scanf("%s", &text) != EOF){
         int eng[26] = {0}, filter = 0;
 
-        for(int i = 0; text[i] != '\0'; i++){ //刪除標點符號
+        for(int i = 0; text[i] != '\0'; i++){
             if(ispunct(text[i]))
                 text[i] = ' ';
         }
 
-        for(int i = 0; text[i] != '\0'; i++){ //小寫轉大寫
+        for(int i = 0; text[i] != '\0'; i++){
             if(text[i] >= 97 && text[i] <= 122)
                 text[i] = text[i]-32;
         }
