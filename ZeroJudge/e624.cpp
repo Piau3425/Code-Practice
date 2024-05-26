@@ -13,8 +13,8 @@ int main(){
                 it2--;
         }
 
-        if(!it1+1)
-            cout << "Yes\n";
+        if(!(it1+1))
+            cout << "Yes\n";  
         else
             cout << "No\n";
     }
