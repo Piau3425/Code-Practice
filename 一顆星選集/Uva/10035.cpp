@@ -18,6 +18,6 @@ int main(){
         if(!count)
             cout << "No carry operation.\n";
         else
-            cout << "No carry operation" << (count == 1 ? "" : "s") << ".\n";
+            cout << count << " carry operation" << (count == 1 ? "" : "s") << ".\n";
     }
 }
