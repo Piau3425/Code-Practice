@@ -1,10 +1,8 @@
 #include <iostream>
 #include <map>
-#include <set>
 using namespace std;
 
 int main(){
-    set<string> check{"00", "01", "100", "101", "1100", "1101", "11100", "11101", "111100", "111101", "111110", "111111"};
     map<string, char> bit2char = {
         {"00", 'A'},
         {"01", 'B'},
@@ -27,7 +25,8 @@ int main(){
             cin >> input;
             for(int i = 0; i < input.length(); i++){
                 tmp += input[i];
-                if(check.count(tmp)){
+                auto it = bit2char.find(tmp);
+                if(it != bit2char.end()){
                     output +=  bit2char[tmp];
                     tmp = "";
                 }

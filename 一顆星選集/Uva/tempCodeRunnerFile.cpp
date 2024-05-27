@@ -1,23 +1,24 @@
 #include <iostream>
 using namespace std;
 
-int main(){
-    int a, b, flag, count;
-    while(cin >> a >> b && (a+b != 0 || flag)){
-        count = 0;
-        while(a > 0 && b > 0){
-            if(a%10 + b%10 + flag >= 10){
-                count++;
-                flag = 1;
-            }
-            else
-                flag = 0;
-            a /= 10; b /= 10;
-        }
+int cycle;
 
-        if(!count)
-            cout << "No carry operation.\n";
-        else
-            cout << count << " carry operation" << "s\0"[count==1] << ".\n";
+int check(int input){
+    cycle++;
+    if(!(input-1))
+        return cycle;
+    else if(input&1)
+        return check(input*3 + 1);
+    else
+        return check(input/2);
+}
+
+int main(){
+    int start, end, maxx = -1e9;
+    while(cin >> start >> end){
+        cycle = 0;
+        for(int i = start; i <= end; i++)
+            maxx = max(check(i), maxx);
+        cout << start << " " << end << " " << maxx << '\n';
     }
 }
