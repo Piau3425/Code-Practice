@@ -4,6 +4,8 @@
 using namespace std;
 
 int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
     int n, maxx;
     cin >> n;
     vector<string> v(n);
@@ -16,7 +18,9 @@ int main(){
 
     for(int i = 0; i < maxx; i++){
         for(int j = 0; j < n; j++){
-            if(j < v[j].length() && !isdigit(v[j][i]))
+            if(i >= v[j].length())
+                break;
+            if(!isdigit(v[j][i]))
                 cout << v[j][i];
         }
     }
