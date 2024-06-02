@@ -1,3 +1,5 @@
+/*TLE*/
+
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -18,8 +20,6 @@ int main(){
 
     for(int i = 0; i < maxx; i++){
         for(int j = 0; j < n; j++){
-            if(i >= v[j].length())
-                break;
             if(!isdigit(v[j][i]))
                 cout << v[j][i];
         }

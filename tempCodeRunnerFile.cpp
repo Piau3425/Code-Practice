@@ -1,38 +1,34 @@
 #include <iostream>
-#include <sstream>
 #include <stack>
-#include <queue>
+#include <vector>
 using namespace std;
 
 int main(){
     int amount;
     string input;
     while(cin >> amount && amount != 0){
-        cin.ignore();
-        while(getline(cin, input) && input != "0"){
-            int train = 1;
+        vector<int> need(amount);
+        while(cin >> need[0] && need[0] != 0){
+            for(int i = 1; i < amount; i++)
+                cin >> need[i];
+            int train = 1, index = 0;
             stack<int> s;
-            queue<int> q;
-            stringstream ss;
-            ss.str(input);
-            int tmp;
-            while(ss >> tmp)
-                q.push(tmp);
             
             while(train <= amount){
                 s.push(train);
-                while(!s.empty() && s.top() == q.front()){
+                while(!s.empty() && s.top() == need[index]){
                     s.pop();
-                    q.pop();
+                    index++;
                 }
                 train++;
             }
             
-            if(q.empty())
+            if(s.empty())
                 cout << "Yes\n";
             else
                 cout << "No\n";
         }
+
         cout << '\n';
     }
 }
