@@ -1,51 +1,40 @@
-#include <iostream>
-#include <vector>
-#include <stack>
-#include <algorithm>
-#include <string>
-using namespace std;
+	#include <iostream>
+	using namespace std;
 
-int f(int a){
-    return 2*a-3;
-}
+	int f(int x){
+		return 2*x-3;
+	}
 
-int g(int a, int b){
-    return 2*a+b-7;
-}
+	int g(int x, int y){
+		return 2*x+y-7;
+	}
 
-int h(int a, int b, int c){
-    return 3*a-2*b+c;
-}
+	int h(int x, int y, int z){
+		return 3*x-2*y+z;
+	}
 
-int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    string tmp;
-    vector<string> s;
-    stack<int> n;
-    while(cin >> tmp)
-        s.push_back(tmp);
-    reverse(s.begin(), s.end());
+	int eval(){
+		string input;
+		cin >> input;
+		if(input[0] == 'f'){
+			int x = eval();
+			return f(x);
+		}
+		if(input[0] == 'g'){
+			int x = eval();
+			int y = eval();
+			return g(x, y);
+		}
+		if(input[0] == 'h'){
+			int x = eval();
+			int y = eval();
+			int z = eval();
+			return h(x, y, z);
+		}
 
-    for(int i = 0; i < s.size(); i++){
-        if(s[i] == "f"){
-            int a = n.top(); n.pop();
-            n.emplace(f(a));
-        }
-        else if(s[i] == "g"){
-            int a = n.top(); n.pop();
-            int b = n.top(); n.pop();
-            n.emplace(g(a, b));
-        }
-        else if(s[i] == "h"){
-            int a = n.top(); n.pop();
-            int b = n.top(); n.pop();
-            int c = n.top(); n.pop();
-            n.emplace(h(a, b, c));
-        }
-        else
-            n.push(stoi(s[i]));
-    }
+		return stoi(input);
+	}
 
-    cout << n.top();
-}
+	int main(){
+		cout << eval();
+	}
