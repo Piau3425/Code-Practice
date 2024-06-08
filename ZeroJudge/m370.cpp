@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(){
-    int loc, food, l = 0, r = 0, input, minn = -1e9, maxx = 1e9;
+    int loc, food, l = 0, r = 0, input, minn = 1e9, maxx = -1e9;
     cin >> loc >> food;
     while(food--){
         cin >> input;
