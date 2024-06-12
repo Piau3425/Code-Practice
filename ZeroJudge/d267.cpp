@@ -1,15 +1,15 @@
 #include <iostream>
-#include <cstring>
 using namespace std;
 
 string str;
-int loop, freq[28], maxx = -1;
+int loop, maxx = -1;
 char ch;
 
 int main(){
     cin >> loop;
     cin.ignore();
     for(int k = 0; k < loop; k++){
+        int freq[28] = {0};
         getline(cin, str);
         for(int i = 0; str[i] != '\0'; i++){
             if(str[i] >= 'a' && str[i] <= 'z'){
@@ -30,6 +30,5 @@ int main(){
         cout << endl;
 
         maxx = -1;
-        memset(freq, 0, sizeof(freq));
     }
 }
