@@ -1,13 +1,10 @@
 #include <stdio.h>
 
-int GCD(int t,int v)
-{
-    if(t%v==0)
-    {
+int GCD(int t,int v){
+    if(t%v==0){
         return v;
     }
-    else
-    {
+    else{
         return GCD(v,t%v);
     }
 }
@@ -16,8 +13,7 @@ int main()
 {
     int a, b, temp;
     scanf("%d %d", &a, &b);
-    if(a<b)
-    {
+    if(a<b){
         temp = a;
         a = b;
         b = temp;
