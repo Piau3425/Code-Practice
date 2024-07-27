@@ -4,14 +4,14 @@
 #include <string>
 using namespace std;
 
-vector<string> subs;
 unordered_set<string> s;
-string mom, son;
+string mom, son, ans = "";
 int len;
 
 void dfs(string save){
     if(save.length() == len){
-        subs.push_back(save);
+        if(s.count(save) == 0 && ans == "")
+            ans = save;
         return;
     }
 
@@ -21,14 +21,10 @@ void dfs(string save){
 
 int main(){
     cin >> mom >> len >> son;
-    dfs("");
 
     for(int i = 0; i < son.length() - len + 1; i++)
         s.insert(son.substr(i, len));
 
-    for(int i = 0; i < subs.size(); i++)
-        if(s.count(subs[i]) == 0){
-            cout << subs[i];
-            break;
-        }
+    dfs("");
+    cout << ans;
 }

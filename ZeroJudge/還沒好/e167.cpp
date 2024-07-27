@@ -30,9 +30,9 @@ int main(){
         map.resize(row, vector<int>(col));
         vis.resize(row, vector<int>(col, 0));
 
-        for(int i = 0; i < row; i++)
-            for(int j = 0; j < col; j++)
-                cin >> map[i][j];
+        for(auto &a : map)
+            for(auto &b : a)
+                cin >> b;
 
         cin >> y >> x;
         vis[y][x] = 1;
