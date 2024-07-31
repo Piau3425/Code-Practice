@@ -2,12 +2,7 @@
 using namespace std;
 
 int main() {
-    char ch, a, b;
+    char a, b;
     cin >> a >> b;
-
-    if (a <= b) {
-        cout << b - a;
-    } else {
-        cout << 'Z' - a + b - 'A' + 1;
-    }
+    cout << (b - a + 26) % 26;
 }

@@ -2,12 +2,12 @@
 using namespace std;
 
 int main() {
-    char ch;
-    cin >> ch;
+    int i;
+    cin >> i;
 
-    if (ch >= 'A') {
-        cout << ch - 'A';
+    if (i % 2 == 0) {
+        cout << "Even";
     } else {
-        cout << ch - 'a';
+        cout << "Odd";
     }
 }
