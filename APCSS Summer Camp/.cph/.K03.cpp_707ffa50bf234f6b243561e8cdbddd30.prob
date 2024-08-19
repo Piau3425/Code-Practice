@@ -1,0 +1,1 @@
+{"name":"Local: K03","url":"d:\\Coding\\Code-Practice\\APCSS Summer Camp\\K03.cpp","tests":[{"id":1723622841716,"input":"5 8\n########\n#..#...#\n####.#.#\n#..#...#\n########","output":"3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Coding\\Code-Practice\\APCSS Summer Camp\\K03.cpp","group":"local","local":true}

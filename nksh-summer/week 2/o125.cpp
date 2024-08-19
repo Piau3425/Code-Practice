@@ -2,11 +2,10 @@
 using namespace std;
 
 int main() {
-    string s1, s2;
-    getline(cin, s1);
-    getline(cin, s2);
-
-    if (s1 > s2) {
+    string a, b;
+    getline(cin, a);
+    getline(cin, b);
+    if (a > b) {
         cout << "True";
     } else {
         cout << "False";

@@ -2,7 +2,7 @@
 using namespace std;
 
 int main() {
-	int Chinese, English, Math;
-    cin >> Chinese >> English >> Math;
-    cout << Math << " " << Chinese << " " << English;
+	for (int i = 1; i <= 100; i++) {
+    cout << i << " ";
+}
 }

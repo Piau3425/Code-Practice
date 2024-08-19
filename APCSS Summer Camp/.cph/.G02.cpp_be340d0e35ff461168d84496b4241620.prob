@@ -1,0 +1,1 @@
+{"name":"Local: G02","url":"d:\\Coding\\Code-Practice\\APCSS Summer Camp\\G02.cpp","tests":[{"id":1723598262248,"input":"4 3 3\n3 1\n4 2\n1000 1\n1\n3\n2","output":"3 1000\n\n4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Coding\\Code-Practice\\APCSS Summer Camp\\G02.cpp","group":"local","local":true}

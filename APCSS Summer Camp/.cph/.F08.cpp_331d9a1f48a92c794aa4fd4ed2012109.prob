@@ -1,0 +1,1 @@
+{"name":"Local: F08","url":"d:\\Coding\\Code-Practice\\APCSS Summer Camp\\F08.cpp","tests":[{"id":1723723132418,"input":"6\n2 10 20 25 30 43","output":"2 8 10 5 5 13"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Coding\\Code-Practice\\APCSS Summer Camp\\F08.cpp","group":"local","local":true}
