@@ -35,3 +35,5 @@ test.c
 test.cpp
 test.py
 tempCodeRunnerFile.cpp
+.cph/
+*.bin
