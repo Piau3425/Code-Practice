@@ -1,1 +1,0 @@
-{"name":"Local: D15","url":"d:\\Coding\\Code-Practice\\APCSS Summer Camp\\D15.cpp","tests":[{"id":1723606185769,"input":"3\n0 0\n3 4\n5 12","output":"0 2"},{"id":1723607873146,"input":"4\n0 0\n0 3\n4 0\n3 4\n","output":"2 3\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Coding\\Code-Practice\\APCSS Summer Camp\\D15.cpp","group":"local","local":true}

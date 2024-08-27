@@ -1,1 +1,0 @@
-{"name":"Local: D21","url":"d:\\Coding\\Code-Practice\\APCSS Summer Camp\\D21.cpp","tests":[{"id":1723551983346,"input":"5\n3 1 4 5 4","output":"4"},{"id":1723551986870,"input":"6\n8 7 2 6 3 4","output":"5"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Coding\\Code-Practice\\APCSS Summer Camp\\D21.cpp","group":"local","local":true}
