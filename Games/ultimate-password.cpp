@@ -2,27 +2,24 @@
 using namespace std;
 
 int main() {
+    int answer, guess, round = 0;
+    srand(time(0));
+    answer = rand() % 101;
+    //cout << answer;
 
-    int max, rnum, input = -1e9, round = 0;
-    cin >> max;
+    do {
+        cin >> guess;
 
-    srand((unsigned)time(NULL));
-
-    rnum = rand() % max;
-    cout << rnum;
-
-    while (rnum != input) {
-        round++;
-        cin >> input;
-
-        if (input > max) {
-            cout << "out of range\n";
+        if (guess > 100 || guess < 0) {
+            cout << "超出範圍！！\n";
             continue;
         }
 
-        if (rnum > input) cout << "Bigger\n";
-        if (rnum < input) cout << "Smaller\n";
-    }
+        if (answer > guess) cout << "更大\n";
+        if (answer < guess) cout << "更小\n";
 
-    cout << "Pass, the code is " << input << " round = " << round;
+        round++;
+    } while (answer != guess);
+
+    cout << "猜中了！終極密碼是：" << answer << "\n總共猜了：" << round << "次";
 }

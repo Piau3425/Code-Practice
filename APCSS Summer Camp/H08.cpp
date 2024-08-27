@@ -2,7 +2,8 @@
 using namespace std;
 
 int main() {
-    int n, d = 0, x = 0, y = 0, l = 0, r = 0, lr = 0, a[3];
+    int n, d = 0, x = 0, y = 0, l = 0, r = 0, lr = 0, a[3] = {};
+    cin >> n;
     while (n--) {
         int nx, ny, nd;
         cin >> nx >> ny;

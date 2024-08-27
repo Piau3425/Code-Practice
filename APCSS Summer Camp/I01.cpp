@@ -5,13 +5,6 @@ int ans = 0;
 vector<int> v(8, -999); // v[y] = x;
 vector<vector<char>> mask(8, vector<char>(8));
 
-void print(vector<int> &v) {
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) cout << (v[i] == j ? "+" : "-") << ' ';
-        cout << '\n';
-    }
-}
-
 bool check(vector<int> &v, int y, int x) {
     for (int i = 0; i < 8; i++)
         if (v[i] == x || v[i] - i == x - y || v[i] + i == x + y || mask[y][x] == '*') return false;
@@ -19,11 +12,7 @@ bool check(vector<int> &v, int y, int x) {
 }
 
 void queen(vector<int> v, int y) {
-    if (y > 7) {
-        //print(v);
-        ans++;
-        return;
-    }
+    if (y > 7) return void(++ans);
     for (int i = 0; i < 8; i++) if (check(v, y, i)) {
         v[y] = i;
         queen(v, y+1);
