@@ -2,19 +2,20 @@
 using namespace std;
 #define int long long
 
-int n, dx[] = {-1, 0, 1, 0}, dy[]= {0, -1, 0, 1};
-vector<vector<char>> v;
-vector<vector<int>> vst;
+int n, dx[] = {-1, 0, 1, 0}, dy[]= {0, -1, 0, 1}; // 往左、上、右、下
+vector<vector<char>> v; // 地圖
+vector<vector<int>> vis; // 走訪紀錄
 
-bool check(int y, int x) {
-    return y >= 0 && y < n && x >= 0 && x < n;
+bool check(int y, int x) { // 判斷邊界與是否為坑洞
+    return y >= 0 && y < n && x >= 0 && x < n && v[y][x] == '0';
 }
 
 void dfs(int y, int x) {
     for (int i = 0; i < 4; i++) {
-        if (check(y+dy[i], x+dx[i]) && v[y+dy[i]][x+dx[i]] == '0' && vst[y+dy[i]][x+dx[i]]) {
-            vst[y+dy[i]][x+dx[i]] = 0;
-            dfs(y+dy[i], x+dx[i]);
+        int ny = y+dy[i], nx = x+dx[i]; // 四周的點座標
+        if (check(ny, nx) && !vis[ny][nx]) {
+            vis[ny][nx] = 1; // 標示已走過
+            dfs(ny, nx);
         }
     }
 }
@@ -23,17 +24,15 @@ signed main() {
     int cnt = 0;
     cin >> n;
     v.resize(n, vector<char>(n));
-    vst.resize(n, vector<int>(n, 1));
+    vis.resize(n, vector<int>(n, 0));
     
-    for (auto &i : v) for (auto &j : i) cin >> j;
+    for (auto &i : v) for (auto &j : i) cin >> j; // 輸入地圖
 
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            if (v[i][j] == '0' && vst[i][j]) {
-                dfs(i, j);
-                cnt++;
-            }
+    for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) { // 從 0, 0 開始遍歷
+        if (v[i][j] == '0' && !vis[i][j]) { // 如果是未走訪的坑洞就進行 dfs
+            dfs(i, j);
+            cnt++; // 計數器
         }
     }
-    cout << cnt;
+    cout << cnt; // 輸出答案
 }
