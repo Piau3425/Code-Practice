@@ -11,20 +11,19 @@ using namespace std;
 #define int long long
 
 signed main() { WA();
-    int n, m, t = 0;
-    while (cin >> n >> m, n && m) {
-        vector<int> a(n), b(m);
-        vector<vector<int>> dp(n+1, vector<int>(m+1, 0));
-        for (auto &i : a) cin >> i;
-        for (auto &i : b) cin >> i;
-
+    int n;
+    for (cin >> n, cin.ignore(); n; n--) {
+        string a, b;
+        getline(cin, a); b = string(a.rbegin(), a.rend());
+        int n = sz(a);
+        vector<vector<int>> dp(n+1, vector<int>(n+1, 0));
         for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= m; j++) {
+            for (int j = 1; j <= n; j++) {
                 if (a[i-1] == b[j-1]) dp[i][j] = dp[i-1][j-1] + 1;
                 else dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
             }
         }
 
-        cout << "Twin Towers #" << ++t << "\nNumber of Tiles : " << dp[n][m] << "\n\n";
+        cout << dp[n][n] << '\n';
     }
 }
