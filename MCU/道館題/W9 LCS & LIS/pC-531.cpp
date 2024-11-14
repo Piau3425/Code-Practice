@@ -27,7 +27,7 @@ signed main() { WA();
         }
 
         while (n && m) {
-            if (a[n-1] == b[m-1]) {
+            if (a[n-1] == b[m-1]) { // 不懂 dp[i][j] > dp[i-1][j] && dp[i][j] > dp[i][j-1] 為何不行
                 ans.pb(a[n-1]);
                 n--; m--;
             }
