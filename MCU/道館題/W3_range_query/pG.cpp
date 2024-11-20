@@ -27,9 +27,14 @@ signed main() { ios::sync_with_stdio(0); cin.tie(0);
         int c, a, b;
         cin >> c >> a >> b;
         if (c == 1) {
+            upd(a, -v[a]);
+            v[a] = b;
+            upd(a, b);
+            /*
             for (int idx = a; idx <= n; idx += idx&-idx) bit[idx] -= v[a];
             v[a] = b;
             for (int idx = a; idx <= n; idx += idx&-idx) bit[idx] += b;
+            */
         }  
         else cout << get(a, b) << '\n';
     }
