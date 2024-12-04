@@ -23,4 +23,4 @@ signed main() { WA();
         else if (S > N) cout << -1 << '\n';
         else cout << 0 << '\n';
     }
-}
+}   

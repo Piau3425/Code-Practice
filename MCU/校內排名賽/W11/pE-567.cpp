@@ -21,15 +21,17 @@ signed main() { WA();
 		while (n--) {
 			cin >> a >> b;
 			cout << setw(2) << a << " to " << setw(2) << b << ":";
+			vector<int> vis(21, 0);
 			queue<pair<int, int>> q;
 			q.push({a, 0});
 			while (q.size()) {
 				auto d = q.front(); q.pop();
+				vis[d.first] = 1;
 				if (d.first == b) {
 					cout << setw(2) << d.second;
 					break;
 				}
-				for (auto u : g[d.first]) q.push({u, d.second+1});
+				for (auto u : g[d.first]) if (!vis[u]) q.push({u, d.second+1});
 			}
 			cout << '\n';
 		}
