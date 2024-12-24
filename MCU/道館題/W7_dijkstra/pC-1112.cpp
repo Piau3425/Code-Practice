@@ -4,7 +4,7 @@ using namespace std;
 
 signed main() {
     int N, I;
-    for (cin >> N; N; N--) {
+    for (cin >> N; N--;) {
         int n, e, t, m;
         cin >> n >> e >> t >> m;
         vector<vector<pair<int, int>>> g(n+1);
@@ -20,16 +20,15 @@ signed main() {
         dis[e] = 0;
 
         while (pq.size()) {
-            int node = pq.top().second;
-            pq.pop();
+            int now = pq.top().second; pq.pop();
 
-            if (vis[node]) continue;
-            vis[node] = 1;
+            if (vis[now]) continue;
+            vis[now] = 1;
 
-            for (auto u : g[node]) {
-                if (dis[node]+u.second < dis[u.first]) {
-                    dis[u.first] = dis[node] + u.second;
-                    pq.push({dis[u.first], u.first});
+            for (auto &[to_idx, to_dis] : g[now]) {
+                if (dis[now] + to_dis < dis[to_idx]) {
+                    dis[to_idx] = dis[now] + to_dis;
+                    pq.push({dis[to_idx], to_idx});
                 }
             }
         }
@@ -37,6 +36,6 @@ signed main() {
         int ans = 0;
         for (auto i : dis) if (i <= t) ans++;
         cout << ans << '\n';
-        if (N > 1) cout << '\n';
+        if (N) cout << '\n';
    }
 }

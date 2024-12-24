@@ -8,7 +8,7 @@ using namespace std;
 #define WA() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((int)(x).size())
-#define int long long
+#define int long long   
 
 int n, s, e, t, a, b, w;
 vector<vector<int>> g;

@@ -1,25 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
+#define lowbit(x) ((x)&-(x))
 
 vector<int> v, bit;
 int n;
 
 void add(int idx, int val) {
-    for (; idx <= n; idx += idx&-idx) bit[idx] += val;
+    for (; idx <= n; idx += lowbit(idx)) bit[idx] += val;
 }
 
 int get(int start, int end) {
     int a = 0, b = 0;
     start--;
-    for (; start > 0; start -= start&-start) a += bit[start];
-    for (; end > 0; end -= end&-end) b += bit[end];
+    for (; start > 0; start -= lowbit(start)) a += bit[start];
+    for (; end > 0; end -= lowbit(end)) b += bit[end];
     return b-a;
-}
-
-void build() {
-    bit.resize(n+1, 0);
-    for (int i = 0; i < n; i++) add(i+1, v[i]);
 }
 
 signed main() { ios::sync_with_stdio(0); cin.tie(0);
@@ -29,7 +25,8 @@ signed main() { ios::sync_with_stdio(0); cin.tie(0);
         cin >> n;
         v.resize(n);
         for (auto &i : v) cin >> i;
-        build();
+        bit.resize(n+1, 0);
+        for (int i = 0; i < n; i++) add(i+1, v[i]);
         //for (auto i : bit) cout << i << ' ';
         //return 0;
         string cmd;
