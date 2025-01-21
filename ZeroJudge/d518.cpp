@@ -10,8 +10,7 @@ int main(){ ios_base::sync_with_stdio(0); cin.tie(0);
         while(n--){
             string input;
             cin >> input;
-            if(mp[input])
-                cout << "Old! " << mp[input] << '\n';
+            if(mp[input]) cout << "Old! " << mp[input] << '\n';
             else{
                 cout << "New! " << i << '\n';
                 mp[input] = i;
