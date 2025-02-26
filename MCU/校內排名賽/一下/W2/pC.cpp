@@ -13,7 +13,7 @@ using namespace std;
 
 signed main() { WA();
     string s, ans = "qwertyuiop[]asdfghjkl;'zxcvbnm,./";
-    while(getline(cin, s)){
+    while (getline(cin, s)) {
         for (auto &c : s) if (!isblank(c)) cout << ans[(ans.find(tolower(c))-2)]; else cout << ' ';
         cout << '\n';
     }
