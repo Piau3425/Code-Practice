@@ -15,7 +15,6 @@ signed main() { WA();
     int n;
     while (cin >> n, n) {
         bitset<32> bt(n);
-        00000000000000000001011
         cout << "The parity of " << bt.to_string().substr(bt.to_string().find('1')) << " is " << bt.count() << " (mod 2).\n";
     }
 }

@@ -19,5 +19,4 @@ signed main() { WA();
         if (sum) cout << "Yes\n";
         else cout << "No\n";
     }
-
 }
