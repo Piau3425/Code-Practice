@@ -12,13 +12,12 @@ using namespace std;
 #define PII pair<int, int>
 
 signed main() { WA();
-    int n; 
+    int n, t; 
     while (cin >> n, n) {
-        vector<int> v(n); for (auto &i : v) cin >> i;
         int sum = 0;
-        for (auto i : v) sum ^= i;
-        if (sum == 0) cout << "No\n";
-        else cout << "Yes\n";
+        while (n--) cin >> t, sum ^= t;
+        if (sum) cout << "Yes\n";
+        else cout << "No\n";
     }
 
 }
