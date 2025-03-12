@@ -38,9 +38,9 @@ signed main() { WA();
             }
         }
 
-        int m = 0;
-        for (auto i : v) if (i.se) cout << (m ? " " : "") << i.fi, m = 1;
-        if (m) cout << "\n";
+        int ck = 0;
+        for (auto [cty, isnot] : v) if (isnot) cout << (ck ? " " : "") << cty, ck = 1;
+        if (ck) cout << "\n";
         else cout << "None\n";
     }
 }
