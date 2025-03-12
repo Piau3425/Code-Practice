@@ -31,23 +31,15 @@ signed main() { WA();
         stringstream ss(s);
         while (getline(ss, s, '+')) {
             stringstream lst(s);
-            set<string> st;
-            while (lst >> s) st.insert(s);
-
             for (auto &[cty, isnot] : v) {
                 int ck = 1;
-                for (auto i : st) if (!mp[cty].count(i)) ck = 0;
+                while (lst >> s) if (!mp[cty].count(s)) ck = 0;
                 if (ck) isnot = 1;
             }
         }
 
         int m = 0;
-        for (auto i : v) {
-            if (i.se) {
-                if (m) cout << ' ';
-                cout << i.fi, m = 1;
-            }
-        }
+        for (auto i : v) if (i.se) cout << (m ? " " : "") << i.fi, m = 1;
         if (m) cout << "\n";
         else cout << "None\n";
     }
