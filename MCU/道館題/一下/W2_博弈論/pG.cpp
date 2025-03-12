@@ -20,11 +20,15 @@ signed main() { WA();
         for (int k = 1; k <= n; k++) {
             int cnt = 0;
             vector<int> a(v);
-            for (int i = 0; i < k; i++) for (int j = 0; j < k; j++) if (v[i] < v[j]) {
-                swap(v[i], v[j]);
-                cnt++;
+            for (int i = 0; i < k; i++) {
+                for (auto i : a) cout << i << ' ';
+                cout << '\n';
+                for (int j = 0; j < k; j++) if (v[i] < v[j]) {
+                    swap(v[i], v[j]);
+                    cnt++;
+                }
             }
-            cout << (k-1 ? " " : "") << cnt;
+            //cout << (k-1 ? " " : "") << cnt;
         }
         cout << '\n';
     }

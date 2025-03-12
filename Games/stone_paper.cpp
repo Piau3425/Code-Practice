@@ -20,6 +20,7 @@ int main() {
             cout << "超出選擇範圍！！\n";
             continue;
         }
+        
         cout << "你的選擇：" << choice[user];
         cout << "電腦的選擇：" << choice[bot];
 
