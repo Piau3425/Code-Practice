@@ -36,6 +36,8 @@ while (cin >> c) {
         num.clear();
     }
 }
+if (num.size()) sum += stoi(string(num.rbegin(), num.rend()));
+cout << sum << '\n';
 */
 /*
 while (getline(cin, s)) {
@@ -49,6 +51,7 @@ while (getline(cin, s)) {
     }
     if (num.size()) sum += stoi(string(num.rbegin(), num.rend()));
 }
+cout << sum << '\n';
 */
 /*
 while (getline(cin, s)) {

@@ -13,7 +13,7 @@ using namespace std;
 
 signed main() { WA();
     int n; cin >> n; cin.ignore();
-    string s;
+    string s, k;
     map<string, set<string>> mp;
     vector<pair<string, bool>> v(n);
     for (int i = 0; i < n; i++) {
@@ -30,17 +30,16 @@ signed main() { WA();
         getline(cin, s);
         stringstream ss(s);
         while (getline(ss, s, '+')) {
-            stringstream lst(s);
             for (auto &[cty, isnot] : v) {
                 int ck = 1;
-                while (lst >> s) if (!mp[cty].count(s)) ck = 0;
-                if (ck) isnot = 1;
+                stringstream lst(s); 
+                while (lst >> k) if (!mp[cty].count(k) && (ck = 0));
+                if (ck && (isnot = 1));
             }
         }
 
         int ck = 0;
-        for (auto [cty, isnot] : v) if (isnot) cout << (ck ? " " : "") << cty, ck = 1;
-        if (ck) cout << "\n";
-        else cout << "None\n";
+        for (auto [cty, isnot] : vector<pair<string, bool>>(v.rbegin(), v.rend())) isnot && cout << (ck++ ? " " : "") << cty;
+        (ck && cout << "\n") || cout << "None\n";
     }
 }

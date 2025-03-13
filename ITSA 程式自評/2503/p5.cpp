@@ -29,6 +29,7 @@ signed main() { WA();
     vector<string> name(n);
     map<string, vector<string>> link;
     vector<tuple<int, string, string>> g;
+    
     for (auto &i : name) {
         cin >> i;
         anc[i] = i;
@@ -47,6 +48,7 @@ signed main() { WA();
         link[a].pb(b);
         ans += w;
     }
+
     for (auto i : name) if (link[i].size()) {
         sort(all(link[i]));
         for (auto j : link[i]) cout << "(" << i << " " << j<< ")";
