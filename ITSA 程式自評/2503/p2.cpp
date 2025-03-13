@@ -12,14 +12,14 @@ using namespace std;
 #define PII pair<int, int>
 
 signed main() { WA();
-    int n; cin >> n; cin.ignore();
+    int n, ck; cin >> n; cin.ignore();
     string s, k;
     map<string, set<string>> mp;
     vector<pair<string, bool>> v(n);
     for (int i = 0; i < n; i++) {
         string cty; getline(cin, s);
         stringstream ss(s);
-        ss >> cty; 
+        ss >> cty;
         while (ss >> s) mp[cty].insert(s);
         v[i].fi = cty;
     }
@@ -31,15 +31,15 @@ signed main() { WA();
         stringstream ss(s);
         while (getline(ss, s, '+')) {
             for (auto &[cty, isnot] : v) {
-                int ck = 1;
+                ck = 1;
                 stringstream lst(s); 
-                while (lst >> k) if (!mp[cty].count(k) && (ck = 0));
-                if (ck && (isnot = 1));
+                while (lst >> k) !mp[cty].count(k) && (ck = 0);
+                ck && (isnot = 1);
             }
         }
 
-        int ck = 0;
-        for (auto [cty, isnot] : vector<pair<string, bool>>(v.rbegin(), v.rend())) isnot && cout << (ck++ ? " " : "") << cty;
+        ck = 0;
+        for (auto [cty, isnot] : v) isnot && cout << (ck++ ? " " : "") << cty;
         (ck && cout << "\n") || cout << "None\n";
     }
 }
