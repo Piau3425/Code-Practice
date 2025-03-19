@@ -20,7 +20,7 @@ signed main() {
     	int sy = a[0]-'a', sx = a[1]-1-'0', ans = 0;
     	q.push({sy, sx, 0});
 
-    	while (!q.empty()) {
+    	while (q.size()) {
     		auto [y, x, step] = q.front(); q.pop();
     		if (vis[y][x]) continue;
     		vis[y][x] = 1;

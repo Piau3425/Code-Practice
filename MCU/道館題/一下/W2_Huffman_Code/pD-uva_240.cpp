@@ -25,7 +25,7 @@ signed main() { WA();
                 auto [f, s] = pq.top(); pq.pop(); // 找出目前頻率最小的元素
                 nsum += f; // 計算該組的頻率總和
                 ssum += s; // 將該組的字元組合起來
-                for (auto c : s) huff[c] = to_string(i) + huff[c]; // 為該分支的字典序第 i 個字元的編碼前面加上 i
+                for (auto c : s) huff[c] = to_string(i) + huff[c]; // 每次 r 個節點合併時，第 i 組所有字元的編碼加上 i
             }
             sort(all(ssum)); // 維護字元在字串中的順序 (尤其是虛擬字元 '}')
             pq.push({nsum, ssum}); // 將合併完的結果放回 minheap
