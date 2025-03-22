@@ -84,6 +84,7 @@ tuple<int, int, int> query(int row, int l, int r, int ql, int qr, int now) {
     int m = (ql+qr) / 2;
     if (~tree[row][now].setmark) pdset(row, ql, qr, now);
     if (tree[row][now].addmark) pdadd(row, ql, qr, now);
+    
 
     tuple<int, int, int> lq, rq; lq = rq = {0, 1e9, -1e9};
     if (l <= m) lq = query(row, l, r, ql, m, now*2);
