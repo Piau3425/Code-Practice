@@ -50,5 +50,3 @@ signed main() { WA();
 		cout << "\n\n";
 	}
 }
-
-STACK: JMKHG
