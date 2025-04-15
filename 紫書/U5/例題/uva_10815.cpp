@@ -11,21 +11,15 @@ using namespace std;
 #define PII pair<int, int>
 
 signed main() { WA();
-    int a, b;
-    while (cin >> a >> b) {
-        string ans = ".(0)";
-
-        if (a%b) {
-            map<int, int> mp;
-            ans = ".";
-            int div = a/b, mod = a%b, now = 1;
-            while (!mp[mod]) {
-                mod *= 10;
-                mp[mod] = now++;
-                ans += 
-            }
+    string s;
+    set<string> st;
+    while (cin >> s) {
+        for (auto &c : s) {
+            if (!isalpha(c)) c = ' ';
+            if (isupper(c)) c = tolower(c);
         }
-
-
+        stringstream ss(s);
+        while (ss >> s) st.insert(s);
     }
+    for (auto s : st) cout << s << '\n';
 }

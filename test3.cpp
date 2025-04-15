@@ -1,16 +1,59 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
-#define pb push_back
-#define fi first
-#define se second
-#define INF LONG_LONG_MAX/1000
-#define WA() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
-#define all(x) (x).begin(), (x).end()
-#define int long long
-#define PII pair<int, int>
+class String_Calculator {
+    public:
+        String_Calculator(){};
+        String_Calculator(const string str);
+        String_Calculator& Add(const string str);
+        String_Calculator& Subtract(const string str);
+        String_Calculator& DividedBy(const string str);
+        void output() const;
 
-signed main() { WA();
-    int a[] = {-1, 0, 1};
-    cout << ~a[0] << ' ' << ~a[1] << ' ' << ~a[2];
+    private:
+        string s = "";
+};
+
+String_Calculator::String_Calculator(const string str) {
+    s = str;
+}
+
+String_Calculator& String_Calculator::Add(const string str) {
+    s += str;
+    return *this;
+}
+
+String_Calculator& String_Calculator::Subtract(const string str) {
+    size_t pos = s.find(str);
+    if (pos != string::npos) {
+        s.erase(pos, str.length());
+    } else {
+        s = "error";
+    }
+    return *this;
+}
+
+String_Calculator& String_Calculator::DividedBy(const string str) {
+    int count = 0;
+    size_t pos = 0;
+    while ((pos = s.find(str, pos)) != string::npos) {
+        count++;
+        pos += str.length();
+    }
+    s = to_string(count);
+    return *this;
+}
+
+void String_Calculator::output() const {
+    cout << s << endl;
+}
+
+int main() {
+    int n; cin >> n;
+    while (n--) {
+        string x, xx;
+        cin >> x >> xx;
+        String_Calculator a(x);
+        a.Subtract(xx).Add(xx).DividedBy(xx).output();
+    }
 }
