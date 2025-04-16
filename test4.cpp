@@ -9,44 +9,13 @@ using namespace std;
 #define se second
 #define all(x) (x).begin(), (x).end()
 
-int n, mx = -1e9, ans = 1;
-vector<int> bit;
-vector<PII> v;
-
-void update(int x) {
-    for (; x <= mx; x += x&-x) bit[x] += 1;
-}
-
-int query(int x) {
-    int sum = 0;
-    for (; x; x -= x&-x) sum += bit[x];
-    return sum;
-}
-
 signed main() { WA();
-    cin >> n;	
-
-	v.assign(n, PII(0, 0));
-	for (auto &i : v) cin >> i.fi >> i.se;
-	map<int, int> mp;
-	for (auto &i : v) mp[i.se]++;
-	for (auto &i : mp) i.se = ans++;
-	for (auto &i : v) i.se = mp[i.se], mx = max(mx, i.se);
-	bit.assign(mx+1, 0);
-	sort(all(v));
-
-/* 	for (auto i : v) cout << i.fi << ' ' << i.se << '\n';
-	cout << "========\n"; */
-
-	ans = 0;
-	for (int i = 0; i < n; i++) {
-		ans += query(v[i].se);
-		update(v[i].se);
+    unordered_set<int> st; 
+	for (int i = 0; i < 1000000; i++) {
+		if (st.load_factor() >= 1) cout << st.bucket_count() << ' ' << st.bucket_size(0) << ' ' << st.load_factor() << '\n';
+		st.insert(i);
 	}
-
-	map<PII, int> freq;
-	for (auto i : v) freq[i]++;
-	for (auto i : freq) ans += (i.se*(i.se-1))>>1;
-
-	cout << ans << '\n';
+	deque<int> dq;
+	stack<int> sta;
+	sta.
 }
