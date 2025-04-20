@@ -1,15 +1,28 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
-#define pb push_back
-#define fi first
-#define se second
-#define INF LONG_LONG_MAX/1000
-#define WA() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
-#define all(x) (x).begin(), (x).end()
-#define int long long
-#define PII pair<int, int>
+int cycle;
 
-signed main() { WA();
-    
+int check(int input){
+    cycle++;
+    if(!(input-1))
+        return cycle;
+    else if(input&1)
+        return check(input*3 + 1);
+    else
+        return check(input/2);
+}
+
+int main(){
+    int start, end, maxx = -1e9, l, r;
+    while(cin >> start >> end){
+        l = min(start, end);
+        r = max(start, end);
+        maxx = 0;
+        for(int i = l; i <= r; i++){
+            cycle = 0;
+            maxx = max(check(i), maxx);
+        }
+        cout << start << " " << end << " " << maxx << '\n';
+    }
 }
