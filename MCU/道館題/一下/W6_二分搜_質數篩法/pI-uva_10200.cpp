@@ -19,11 +19,11 @@ bool Prime(int x) {
 signed main() { WA();
     vector<int> isp(MAXN, 1), ps;
     vector<int> pre(10004);
-    for (int i = 0; i <= 10000; i++) pre[i] = Prime(i*i+i+41);
+    for (int i = 0; i <= 10004; i++) pre[i] = Prime(i*i+i+41);
     int a, b;
     while (cin >> a >> b) {
         double cnt = 0;
         for (int i = a; i <= b; i++) cnt += pre[i];
-        cout << fixed << setprecision(2) << 100*cnt/(b-a+1) << '\n';
+        cout << fixed << setprecision(2) << 100.0*cnt/(b-a+1)+0.0000001 << '\n';
     }
 }

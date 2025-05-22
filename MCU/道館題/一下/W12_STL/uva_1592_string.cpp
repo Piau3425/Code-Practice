@@ -22,21 +22,13 @@ signed main() { WA();
             while (getline(ss, s, ',')) v[i].pb(s);
         }
 
-        int idx = -1;
-        unordered_map<string, int> pre;
-        vector<vector<int>> g(r, vector<int>(c));
-        for (int i = 0; i < r; i++) for (int j = 0; j < c; j++) {
-            if (pre.find(v[i][j]) == pre.end()) pre[v[i][j]] = ++idx;
-            g[i][j] = pre[v[i][j]];
-        }
-
         bool ck = 1;
         for (int j = 0; j < c && ck; j++) for (int k = j+1; k < c && ck; k++) {
-            map<PII, PII> mp;
+            unordered_map<string, PII> mp;
             for (int i = 0; i < r; i++) {
-                if (mp.find({g[i][j], g[i][k]}) == mp.end()) mp[{g[i][j], g[i][k]}] = {i, j};
+                if (mp.find(v[i][j]+char(127)+v[i][k]) == mp.end()) mp[v[i][j]+char(127)+v[i][k]] = {i, j};
                 else {
-                    cout << "NO\n" << mp[{g[i][j], g[i][k]}].fi+1 << ' ' << i+1 << '\n' << mp[{g[i][j], g[i][k]}].se+1 << ' ' << k+1 << '\n';
+                    cout << "NO\n" << mp[v[i][j]+char(127)+v[i][k]].fi+1 << ' ' << i+1 << '\n' << mp[v[i][j]+char(127)+v[i][k]].se+1 << ' ' << k+1 << '\n';
                     ck = 0;
                     break;
                 }
