@@ -10,14 +10,14 @@ using namespace std;
 #define int long long
 #define PII pair<int, int>
 
-int n, cnt = 0, dx[] = {0, 1, 0, -1}, dy[] = {1, 0, -1, 0};
+int mx[] = {0, 1, 0, -1}, my[] = {1, 0, -1, 0}, n, m;
 vector<vector<char>> v;
 vector<vector<int>> vis;
 
 void dfs(int x, int y) {
     for (int i = 0; i < 4; i++) {
-        int nx = x + dx[i], ny = y + dy[i];
-        if (nx >= 0 && nx < n && ny >= 0 && ny < n && v[nx][ny] == '0' && !vis[nx][ny]) {
+        int nx = x+mx[i], ny = y+my[i];
+        if (nx >= 0 && nx < n && ny >= 0 && ny < m && v[nx][ny] != '#' && !vis[nx][ny]) {
             vis[nx][ny] = 1;
             dfs(nx, ny);
         }
@@ -25,15 +25,15 @@ void dfs(int x, int y) {
 }
 
 signed main() { WA();
-    cin >> n;
-    v.assign(n, vector<char>(n));
-    vis.assign(n, vector<int>(n, 0));
-    for (auto &i : v) for (auto &j : i) cin >> j;
-    for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) {
-        if (v[i][j] == '0' && !vis[i][j]) {
-            dfs(i, j);
+    while (cin >> n >> m) {
+        int cnt = 0;
+        v.assign(n, vector<char>(m));
+        vis.assign(n, vector<int>(m));
+        for (auto &i : v) for (auto &j : i) cin >> j;
+        for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) if (v[i][j] == '.' && !vis[i][j]) {
             cnt++;
+            dfs(i, j);
         }
+        cout << cnt << '\n';
     }
-    cout << cnt;
 }

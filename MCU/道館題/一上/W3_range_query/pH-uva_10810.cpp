@@ -10,12 +10,12 @@ int n;
 vector<int> bit, v;
 
 void update(int x) {
-    for (; x <= n; x += lowbit(x)) bit[x] += 1;
+    for (; x <= n; x += x&-x) bit[x]++;
 }
 
 int query(int x) {
     int sum = 0;
-    for (; x > 0; x -= lowbit(x)) sum += bit[x];
+    for (; x; x -= x&-x) sum += bit[x];
     return sum;
 }
 
