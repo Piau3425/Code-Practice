@@ -29,10 +29,12 @@ void pull(int l, int r, int id) {
 }
 
 void push(int l, int r, int id) {
-    seg[id].data += seg[id].tag * (r-l+1);
-    seg[id<<1].tag += seg[id].tag;
-    seg[id<<1|1].tag += seg[id].tag;
-    seg[id].tag = 0;
+    if (seg[id].tag) {
+        seg[id].data += seg[id].tag * (r-l+1);
+        seg[id<<1].tag += seg[id].tag;
+        seg[id<<1|1].tag += seg[id].tag;
+        seg[id].tag = 0;
+    }
 }
 
 void build(vector<int> &v, int l = 0, int r = n-1, int id = 1) {

@@ -20,6 +20,9 @@ l、r 為左右子樹
 此範例為 min_heap
 */
 mt19937 rng(time(0));
+struct Node;
+inline int _getSiz(Node *x);
+
 struct Node {
     int val, pri, siz, cnt;
     Node *l, *r;
@@ -27,9 +30,13 @@ struct Node {
     Node(int x) : val(x), pri(rng()), siz(1), cnt(1), l(nullptr), r(nullptr) {}
 
     void pull() {
-        siz = cnt + (l ? l->siz : 0) + (r ? r->siz : 0);
+        siz = cnt + _getSiz(l) + _getSiz(r);
     }
 };
+
+inline int _getSiz(Node *x) {
+    return (x ? x->siz : 0);
+}
 
 /*
 _split 將原 Treap x 分割成兩個 Treap，為 a 跟 b
@@ -55,12 +62,10 @@ pair<Node *, Node *> _split(Node *x, int key) { // 使用方法：auto [a, b] = 
         return {x, b};
     }
     // 相反同理
-    else {
-        auto [a, b] = _split(x->l, key);
-        x->l = b;
-        x->pull();
-        return {a, x};
-    }
+    auto [a, b] = _split(x->l, key);
+    x->l = b;
+    x->pull();
+    return {a, x};
 }
 
 /*
@@ -110,11 +115,9 @@ Node *_merge(Node *a, Node *b) {
         return a; // a 為父節點
     }
     // 相反同理
-    else {
-        b->l = _merge(a, b->l); // 記得遵守前提
-        b->pull();
-        return b;
-    }
+    b->l = _merge(a, b->l); // 記得遵守前提
+    b->pull();
+    return b;
 }
 
 /*
@@ -162,16 +165,18 @@ void _delete(Node *&x, int val) {
     x = _merge(a, _merge(bl, br));
 }
 
-int queryRankByVal(Node *x, int val) {
+int queryRankByVal(Node *&x, int val) {
     auto [a, b] = _split(x, val);
     int ret = (a ? a->siz : -2) + 1;
-    _merge(a, b);
+    x = _merge(a, b);
     return ret;
 }
 
-int queryValByRank(Node *x, int rk) {
+int queryValByRank(Node *&x, int rk) {
     auto [ll, mid, rr] = splitByRank(x, rk);
-    return mid->val;
+    int ret = (mid ? mid->val : 0);
+    x = _merge(_merge(ll, mid), rr);
+    return ret;
 }
 
 signed main() { WA();

@@ -17,15 +17,22 @@ cnt 紀錄 val 值有幾個
 l、r 為左右子樹
 */
 
+struct Node;
+inline int _getSiz(Node *x);
+
 struct Node {
     Node *p, *l, *r;
     int val, siz, cnt;
     Node(int x) : p(nullptr), l(nullptr), r(nullptr), val(x), siz(1), cnt(1) {}
 
     void pull() {
-        siz = (l ? l->siz : 0) + (r ? r->siz : 0) + cnt;
+        siz = _getSiz(l) + _getSiz(r) + cnt;
     }
 };
+
+inline int _getSiz(Node *x) {
+    return (x ? x->siz : 0);
+}
 
 /*
 根據插入的值與當前節點的值進行判斷
@@ -34,14 +41,14 @@ struct Node {
 若為空節點就新增節點，已經存在則增加該節點的 cnt
 */
 
-Node *Insert(Node *x, int val) {
+Node *_insert(Node *x, int val) {
     if (!x) return new Node(val);
     if (val < x->val) {
-        x->l = Insert(x->l, val);
+        x->l = _insert(x->l, val);
         x->l->p = x;
     }
     else if (val > x->val) {
-        x->r = Insert(x->r, val);
+        x->r = _insert(x->r, val);
         x->r->p = x;
     }
     else x->cnt++;
@@ -55,11 +62,11 @@ Node *Insert(Node *x, int val) {
 順序為左子樹 -> 當前節點 -> 右子樹
 */
 
-void Traversal(Node *x) { // x 為根節點
+void _traversal(Node *x) { // 初始 x 為根節點
     if (!x) return;
-    Traversal(x->l);
+    _traversal(x->l);
     for (int i = 0; i < x->cnt; i++) cout << x->val << ' ';
-    Traversal(x->r);
+    _traversal(x->r);
 }
 
 /*
@@ -68,11 +75,11 @@ void Traversal(Node *x) { // x 為根節點
 若值相等則當前節點為目標
 */
 
-Node *Find(Node *x, int key) {
+Node *_find(Node *x, int key) {
     if (!x) return nullptr;
     if (key == x->val) return x;
-    if (key < x->val) return Find(x->l, key);
-    return Find(x->r, key);
+    if (key < x->val) return _find(x->l, key);
+    return _find(x->r, key);
 }
 
 /*
@@ -80,13 +87,13 @@ Node *Find(Node *x, int key) {
 反之亦然
 */
 
-Node *Find_Min(Node *x) {
+Node *_find_Min(Node *x) {
     if (!x) return nullptr;
     while (x->l) x = x->l;
     return x;
 }
 
-Node *Find_Max(Node *x) {
+Node *_find_Max(Node *x) {
     if (!x) return nullptr;
     while (x->r) x = x->r;
     return x;
@@ -110,24 +117,24 @@ Node *Find_Max(Node *x) {
 直接刪除該節點
 */
 
-Node *Delete(Node *x, int key) {
+Node *_delete(Node *x, int key) {
     if (!x) return x; // 沒找到 key 值
     if (key < x->val) { // 往下連接
-        x->l = Delete(x->l, key);
+        x->l = _delete(x->l, key);
         if (x->l) x->l->p = x;
     }
     else if (key > x->val) { // 往下連接
-        x->r = Delete(x->r, key);
+        x->r = _delete(x->r, key);
         if (x->r) x->r->p = x;
     }
     else {
         if (x->cnt > 1) x->cnt--;
         else {
             if (x->l && x->r) {
-                Node *y = Find_Max(x->l); // 找到替身與當前節點互換
+                Node *y = _find_Max(x->l); // 找到替身與當前節點互換
                 x->val = y->val; x->cnt = y->cnt; // 底下的節點被換上來
                 y->cnt = 1; // 但是換到下面的節點會被刪除，因此不用實作交換，但要記得將其出現次數該為 1
-                x->l = Delete(x->l, y->val);
+                x->l = _delete(x->l, y->val);
                 if (x->l) x->l->p = x;
             }
             else if (x->l) {
@@ -154,29 +161,29 @@ Node *Delete(Node *x, int key) {
 
 /*
 查詢值是樹中的第幾元素
-
 */
 
 int queryRank(Node *x, int key) {
     if (!x) return -1;
-    if (x->val == key) return (x->l ? x->l->siz : 0) + 1;
-    if (x->val > key) return queryRank(x->l, key);
-    return queryRank(x->r, key) + (x->l ? x->l->siz : 0) + x->cnt; // if (x->val < key)
+    if (key == x->val) return _getSiz(x->l) + 1;
+    if (key < x->val) return queryRank(x->l, key);
+    int qr = queryRank(x->r, key);
+    if (~qr) return _getSiz(x->l) + x->cnt + qr; // if (key > x->val)
+    return -1;
 }
 
 /*
 查詢樹中第幾元素的值為何
-
 */
 
 int querykth(Node *x, int rank) {
     if (!x) return -1;
     if (x->l) {
-        if (x->l->siz >= rank) querykth(x->l, rank);
+        if (x->l->siz >= rank) return querykth(x->l, rank);
         if (x->l->siz + x->cnt >= rank) return x->val;
     }
     else if (x->cnt >= rank) return x->val;
-    return querykth(x->r, rank - (x->l ? x->siz : 0) - x->cnt);
+    return querykth(x->r, rank - _getSiz(x->l) - x->cnt);
 }
 
 signed main() { WA();

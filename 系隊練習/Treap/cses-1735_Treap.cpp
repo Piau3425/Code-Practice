@@ -17,10 +17,10 @@ inline int _getSiz(Node *x);
 inline int _getSum(Node *x);
 
 struct Node {
-    int val, sum, pri, siz, _add, _set_tag, _set_val, rev;
+    int val, sum, pri, siz, _add, _set_tag, _set_val;
     Node *l, *r;
 
-    Node(int x): val(x), sum(x), pri(gen()), siz(1), _add(0), _set_tag(0), _set_val(0), rev(0), l(nullptr), r(nullptr) {}
+    Node(int x): val(x), sum(x), pri(gen()), siz(1), _add(0), _set_tag(0), _set_val(0), l(nullptr), r(nullptr) {}
 
     void pull() {
         siz = _getSiz(l) + _getSiz(r) + 1;
@@ -48,12 +48,6 @@ struct Node {
             if (r) r->set(_set_val);
             _set_tag = 0;
         }
-        if (rev) {
-            swap(l, r);
-            if (l) l->rev ^= 1;
-            if (r) r->rev ^= 1;
-            rev = 0;
-        }
         if (_add) {
             if (l) l->add(_add);
             if (r) r->add(_add);
@@ -70,11 +64,6 @@ inline int _getSum(Node *x) {
     return (x ? x->sum : 0);
 }
 
-/*
-直接使用 split by size
-因為 size 就是 index
-*/
-
 pair<Node *, Node *> _split(Node *x, int sz) {
     if (!x) return {nullptr, nullptr};
     x->push();
@@ -84,51 +73,38 @@ pair<Node *, Node *> _split(Node *x, int sz) {
         x->pull();
         return {a, x};
     }
-    auto [a, b] = _split(x->r, sz - _getSiz(x->l) - 1);
-    x->r = a;
-    x->pull();
-    return {x, b};
+    else {
+        auto [a, b] = _split(x->r, sz - _getSiz(x->l) - 1);
+        x->r = a;
+        x->pull();
+        return {x, b};
+    }
 }
 
 Node *_merge(Node *a, Node *b) {
     if (!a) return b;
     if (!b) return a;
 
+    a->push(); b->push();
     if (a->pri < b->pri) {
-        a->push();
         a->r = _merge(a->r, b);
         a->pull();
         return a;
     }
-    b->push();
-    b->l = _merge(a, b->l);
-    b->pull();
-    return b;
+    else {
+        b->l = _merge(a, b->l);
+        b->pull();
+        return b;
+    }
 }
 
-Node *_build_rec(vector<int> &v, int l, int r) {
-    if (l > r) return nullptr;
-    int mid = (l+r) / 2;
-    Node *x = new Node(v[mid]);
-    x->l = _build_rec(v, l, mid-1);
-    x->r = _build_rec(v, mid+1, r);
-    x->pull();
-    return x;
-}
-
-void _traversal(Node *x) {
-    if(!x) return;
-    x->push();
-    if (x->l) _traversal(x->l);
-    cout << x->val << ' ';
-    if (x->r) _traversal(x->r);
-}
-
-void _seg_rev(Node *&x, int l, int r) {
-    auto [a, b] = _split(x, l);
-    auto [ba, bb] = _split(b, r-l+1);
-    if (ba) ba->rev ^= 1;
-    x = _merge(a, _merge(ba, bb));
+void _build(Node *&x, vector<int> &v) {
+    x = nullptr;
+    for (int i = 0; i < v.size(); i++) {
+        Node *k = new Node(v[i]);
+        auto [a, b] = _split(x, i);
+        x = _merge(_merge(a, k), b);
+    }
 }
 
 void _seg_add(Node *&x, int l, int r, int val) {
@@ -146,5 +122,34 @@ void _seg_set(Node *&x, int l, int r, int val) {
 }
 
 signed main() { WA();
-
+    int n, q;
+    cin >> n >> q;
+    vector<int> v(n);
+    for (auto &i : v) cin >> i;
+    Node *root;
+    _build(root, v);
+    while (q--) {
+        int t, a, b, x;
+        cin >> t;
+        if (t == 1) {
+            cin >> a >> b >> x;
+            a--, b--;
+            _seg_add(root, a, b, x);
+        }
+        else if (t == 2) {
+            cin >> a >> b >> x;
+            a--, b--;
+            _seg_set(root, a, b, x);
+        }
+        else {
+            cin >> a >> b;
+            a--, b--;
+            auto [l, r] = _split(root, a);
+            auto [rl, rr] = _split(r, b-a+1);
+            cout << rl->sum << '\n';
+            root = _merge(l, _merge(rl, rr));
+        }
+    }
 }
+
+
