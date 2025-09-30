@@ -11,10 +11,13 @@ using namespace std;
 #define PII pair<int, int>
 
 signed main() { WA();
-    int n; cin >> n;
-    vector<tuple<PII, PII, PII>> v(n);
-    for (auto &[a, b, c] : v) cin >> a.fi >> b.fi >> c.fi, a.se = a.fi, b.se = b.fi, c.se = c.fi;
-    for (int i = 1; i < n; i++) {
-        auto &[a, b, c] = v[i];
+    int n, m;
+    cin >> n >> m;
+    vector<PII> v(n+1);
+    vector<int> dp(m+1);
+    for (int i = 1; i <= n; i++) cin >> v[i].fi >> v[i].se;
+    for (int i = 1; i <= n; i++) {
+        for (int j = m; j >= v[i].fi; j--) dp[j] = max(dp[j], dp[j-v[i].fi]+v[i].se);
     }
+    cout << dp[m];
 }
