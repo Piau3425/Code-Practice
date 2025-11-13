@@ -87,16 +87,6 @@ Node *_merge(Node *a, Node *b) {
     return b;
 }
 
-Node *_build_rec(vector<int> &v, int l, int r) {
-    if (l > r) return nullptr;
-    int mid = (l+r) / 2;
-    Node *x = new Node(v[mid]);
-    x->l = _build_rec(v, l, mid-1);
-    x->r = _build_rec(v, mid+1, r);
-    x->pull();
-    return x;
-}
-
 void _seg_rev(Node *&x, int l, int r) {
     auto [a, b] = _split(x, l-1);
     auto [ba, bb] = _split(b, r-l+1);
@@ -113,9 +103,8 @@ void _seg_add(Node *&x, int l, int r, int val) {
 
 signed main() { WA();
     int n, m; cin >> n >> m;
-    vector<int> vec(n);
-    Node *root;
-    root = _build_rec(vec, 0, n-1);
+    Node *root = nullptr;
+    for (int i = 0; i < n; i++) root = _merge(root, new Node(0));
     while (m--) {
         int k, l, r, v;
         cin >> k >> l >> r;

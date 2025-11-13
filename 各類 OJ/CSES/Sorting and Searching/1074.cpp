@@ -11,8 +11,12 @@ using namespace std;
 #define PII pair<int, int>
 
 signed main() { WA();
-    int n; vector<PII> v(n);
-    for (auto &i : v) cin >> i.fi >> i.se;
-    vector<tuple<int, int, int>> g;
-    
+    int n; cin >> n;
+    vector<int> v(n);
+    for (auto &i : v) cin >> i; sort(all(v));
+    int k, sum = 0;
+    if (n&1) k = v[n/2];
+    else k = v[n/2-1];
+    for (auto &i : v) sum += abs(i-k);
+    cout << sum << '\n';
 }

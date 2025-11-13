@@ -6,17 +6,6 @@ vector<int> anc, sum, sz;
 
 int find(int x) { return (anc[x] == x ? x : anc[x] = find(anc[x])); }
 
-/*
-void list_all() {
-    for (auto i : anc) cout << i << ' ';
-    cout << '\n';
-    for (auto i : sz) cout << i << ' ';
-    cout << '\n';
-    for (auto i : sum) cout << i << ' ';
-    cout << "\n\n";
-}
-*/
-
 void merge(int p, int q) {
     int a = find(p), b = find(q);
     if (a == b) return;

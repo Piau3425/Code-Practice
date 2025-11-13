@@ -16,7 +16,7 @@ signed main() { WA();
         for (int i = 0; i < n; i++) cin >> v[i].se, v[i].fi = char('A' + i);
         priority_queue<pair<int, string>, vector<pair<int, string>>, greater<pair<int, string>>> pq; // 頻率及該節點所有的字元
         map<char, string> huff; // 字元 (節點) 對應的編碼
-        for (int i = 0; i < n; i++) pq.push({v[i].se, string(1, char('A' + i))}); // 將所有的字母以及其頻率放入 minheap
+        for (int i = 0; i < n; i++) pq.push({v[i].se, string(1, v[i].fi)}); // 將所有的字母以及其頻率放入 minheap
         if (EMPTY) for (int i = 0; i < r-1-EMPTY; i++) pq.push({0, "}"}); // n-1 必須為 r-1 的倍數，才能進行 n-1 次的合併 (直到剩下根節點)。而每次合併 r 個節點，總節點數會減少 r-1 個節點。
         //                                                     放入 }，是因為 } 的 ascii 大於所有的大寫字母，方便使虛擬字元在合併時被放在字串尾
         while (pq.size() > 1) { // 直到剩下根節點

@@ -17,12 +17,12 @@ signed main() { WA();
         stringstream ss(s);
         vector<int> v, ans = {1, 2, 4, 6, 5, 3};
         while (getline(ss, s, ',')) v.pb(stoi(s));
-        int cnt = 0;
+        int cnt = 1;
         while (v != ans) {
             if (v < ans) next_permutation(all(v));
             else prev_permutation(all(v));
             cnt++;
         }
-        cout << cnt+1 << '\n';
+        cout << cnt << '\n';
     }
 }

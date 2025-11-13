@@ -38,14 +38,14 @@ struct Node {
 pair<Node *, Node *> _split(Node *x, int val) {
     if (!x) return {nullptr, nullptr};
     x->push();
-    if (val <= x->val) {
-        auto [a, b] = _split(x->l, val);
-        x->l = b;
-        return {a, x};
+    if (x->val < val) {
+        auto [a, b] = _split(x->r, val);
+        x->r = a;
+        return {x, b};
     }
-    auto [a, b] = _split(x->r, val);
-    x->r = a;
-    return {x, b};
+    auto [a, b] = _split(x->l, val);
+    x->l = b;
+    return {a, x};
 }
 
 Node *_merge(Node *a, Node *b) {

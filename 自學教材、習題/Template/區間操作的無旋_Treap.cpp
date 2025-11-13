@@ -78,18 +78,18 @@ inline int _getSum(Node *x) {
 pair<Node *, Node *> _split(Node *x, int sz) {
     if (!x) return {nullptr, nullptr};
     x->push();
-    if (sz <= _getSiz(x->l)) {
-        auto [a, b] = _split(x->l, sz);
-        x->l = b;
+    if (_getSiz(x->l) < sz) {
+        auto [a, b] = _split(x->r, sz - _getSiz(x->l) - 1);
+        x->r = a;
         x->pull();
-        return {a, x};
+        return {x, b};
     }
-    auto [a, b] = _split(x->r, sz - _getSiz(x->l) - 1);
-    x->r = a;
+    auto [a, b] = _split(x->l, sz);
+    x->l = b;
     x->pull();
-    return {x, b};
+    return {a, x};
 }
-
+    
 Node *_merge(Node *a, Node *b) {
     if (!a) return b;
     if (!b) return a;
@@ -106,14 +106,10 @@ Node *_merge(Node *a, Node *b) {
     return b;
 }
 
-Node *_build_rec(vector<int> &v, int l, int r) {
-    if (l > r) return nullptr;
-    int mid = (l+r) / 2;
-    Node *x = new Node(v[mid]);
-    x->l = _build_rec(v, l, mid-1);
-    x->r = _build_rec(v, mid+1, r);
-    x->pull();
-    return x;
+
+Node *_insert(Node *x, int k) {
+    auto [a, b] = _split(x, k);
+    return _merge(_merge(a, new Node(k)), b);
 }
 
 void _traversal(Node *x) {

@@ -10,7 +10,7 @@ using namespace std;
 #define int long long
 #define PII pair<int, int>
 
-signed main() { WA();
+int main() {
     int n, k; while (cin >> n >> k) {
         vector<int> v(n+1); int l, r; l = r = 0;
         for (auto &i : v) cin >> i, r += i, l = max(l, i);

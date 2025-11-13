@@ -13,7 +13,7 @@ using namespace std;
 signed main() { WA();
     int n; cin >> n; cin.ignore();
     while (n--) {
-        string s, l = "([{", r = ")]}";
+        string s, l = "([", r = ")]";
         stack<char> sk;
         int ck = 1;
         getline(cin, s);

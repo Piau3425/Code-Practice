@@ -22,17 +22,13 @@ struct Node {
 set<Node> odt;
 const int p = 1e9+7;
 
-inline Node *_copy(set<Node>::iterator x) {
-    return new Node(x->l, x->r, x->v);
-}
-
 auto _split(int x) {
     auto it = odt.lower_bound(Node(x, 0, 0));
     if (it != odt.end() && it->l == x) return it;
-    auto k = _copy(--it);
+    it--; Node k = *it;
     odt.erase(it);
-    odt.insert(Node(k->l, x-1, k->v));
-    return odt.insert(Node(x, k->r, k->v)).fi;
+    odt.insert(Node(k.l, x-1, k.v));
+    return odt.insert(Node(x, k.r, k.v)).fi;
 }
 
 int _query(int l, int r) {

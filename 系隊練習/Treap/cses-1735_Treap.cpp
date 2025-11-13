@@ -98,15 +98,6 @@ Node *_merge(Node *a, Node *b) {
     }
 }
 
-void _build(Node *&x, vector<int> &v) {
-    x = nullptr;
-    for (int i = 0; i < v.size(); i++) {
-        Node *k = new Node(v[i]);
-        auto [a, b] = _split(x, i);
-        x = _merge(_merge(a, k), b);
-    }
-}
-
 void _seg_add(Node *&x, int l, int r, int val) {
     auto [a, b] = _split(x, l);
     auto [ba, bb] = _split(b, r-l+1);
@@ -125,9 +116,11 @@ signed main() { WA();
     int n, q;
     cin >> n >> q;
     vector<int> v(n);
-    for (auto &i : v) cin >> i;
-    Node *root;
-    _build(root, v);
+    Node *root = nullptr;
+    for (auto &i : v) {
+        cin >> i;
+        root = _merge(root, new Node(i));
+    }
     while (q--) {
         int t, a, b, x;
         cin >> t;
@@ -151,5 +144,3 @@ signed main() { WA();
         }
     }
 }
-
-

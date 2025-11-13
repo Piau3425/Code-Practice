@@ -30,7 +30,8 @@ signed main() { WA();
         vector<tuple<double, double, double>> g;
         for (auto &i : v) cin >> i.fi >> i.se;
         for (int i = 0; i+1 < n; i++) for (int j = i + 1; j < n; j++) {
-                g.pb({sqrt((v[j].fi-v[i].fi)*(v[j].fi-v[i].fi)+(v[j].se-v[i].se)*(v[j].se-v[i].se)), i, j});
+            // 以前的我不知道 hypot 是好東西
+            g.pb({hypot(v[i].fi-v[j].fi, v[i].se-v[j].se), i, j});
         }
         sort(all(g));
 
