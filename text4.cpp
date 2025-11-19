@@ -1,17 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define pb push_back
-#define fi first
-#define se second
-#define INF LONG_LONG_MAX/1000
-#define WA() cin.tie(0)->sync_with_stdio(0)
-#define all(x) (x).begin(), (x).end()
-#define int long long
-#define PII pair<int, int>
+vector<int> fn;
 
-signed main() { WA();
-    int x, y;
-    (x, y) = (4, 6);
-    cout << x << ' ' << y;
+int f(int x) {
+    int &k = fn[x];
+    
+    if (~fn[x]) return fn[x];
+
+    if (x <= 1) k = 1;
+    else k = f(x-1) + f(x-2);
+
+    return cout << k << ' ', fn[x];
+}
+
+int main() {
+    int n; cin >> n;
+    fn.assign(n+1, -1);
+    f(n-1);
 }

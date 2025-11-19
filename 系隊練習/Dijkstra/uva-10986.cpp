@@ -1,62 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+#define pb push_back
+#define fi first
+#define se second
+#define INF LONG_LONG_MAX/1000
+#define WA() cin.tie(0)->sync_with_stdio(0)
+#define all(x) (x).begin(), (x).end()
 #define int long long
+#define PII pair<int, int>
 
-signed main() {
-    int N, I;
-    for (cin >> N, I = 1; I <= N; I++) {
-        int n, m, s, t; // node (0, n-1), edge
-        cin >> n >> m >> s >> t;
-        vector<vector<pair<int, int>>> g(n);
+signed main() { WA();
+    int T; cin >> T;
+    for (int k = 1; k <= T; k++) {
+        cout << "Case #" << k << ": ";
+        int n, m, s, t; cin >> n >> m >> s >> t;
+        vector<vector<PII>> g(n);
+        vector<int> vis(n), dis(n, INF);
         while (m--) {
-            int a, b, w;
-            cin >> a >> b >> w;
-            g[a].push_back({b, w});
-            g[b].push_back({a, w});
+            int a, b, w; cin >> a >> b >> w;
+            g[a].pb({b, w});
+            g[b].pb({a, w});
         }
-
-        vector<int> vis(n), dis(n, 0x3fffffff);
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // node, weight
-        pq.push({0, s});
-        dis[s] = 0;
-
+        priority_queue<PII, vector<PII>, greater<PII>> pq;
+        pq.push({0, s}); dis[s] = 0;
         while (pq.size()) {
-            // 取最小距離點
-            int node = pq.top().second;
-            pq.pop();
-
-            if (vis[node]) continue;
-            vis[node] = 1;
-
-            for (auto u : g[node]) {
-                int v = u.first; // 最小距離點的鄰接節點
-                int w = u.second; // 最小點到該點距離
-                if (dis[node]+w < dis[v]) {
-                    dis[v] = dis[node] + w;
-                    pq.push({dis[v], v});
+            auto [nowDist, nowID] = pq.top(); pq.pop();
+            if (vis[nowID]) continue;
+            vis[nowID] = 1;
+            for (auto [toID, toDist] : g[nowID]) {
+                if (dis[toID] > dis[nowID] + toDist) {
+                    dis[toID] = dis[nowID] + toDist;
+                    pq.push({dis[toID], toID});
                 }
             }
         }
 
-        /*
-        for (int i = 0; i < n; i++) {
-            int mnod, mnval = 0x3fffffff;
-            for (int j = 0; j < n; j++) {
-                if (!vis[j] && dis[j] <= mnval) mnod = j, mnval = dis[j];
-            }
-
-            vis[mnod] = 1;
-
-            for (auto u : g[mnod]) {
-                int v = u.first; // mnod 連接的節點
-                int d = u.second; // mnod 兩節點 edge 的權重
-                dis[v] = min(dis[v], dis[mnod] + d); // 檢查是否能縮短到 v 的距離 
-            }
-        }
-        */
-        cout << "Case #" << I << ": "; 
-        if (!vis[t]) cout << "unreachable\n";
+        if (dis[t] == INF) cout << "unreachable\n";
         else cout << dis[t] << '\n';
-        vis.clear(); dis.clear(); g.clear();    
     }
 }

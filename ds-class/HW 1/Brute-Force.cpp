@@ -24,7 +24,7 @@ signed main() { WA();
             double len = 0;
             for (int i = 1; i < n; i++) {
                 int now = order[i], prev = order[i-1];
-                len += hypot(v[now].fi-v[prev].fi, v[now].se-v[prev].se) + 16   ;
+                len += hypot(v[now].fi-v[prev].fi, v[now].se-v[prev].se) + 16;
             }
             if (len < mn) {
                 ans = order;
