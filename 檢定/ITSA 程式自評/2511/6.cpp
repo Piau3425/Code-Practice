@@ -11,14 +11,8 @@ using namespace std;
 #define PII pair<int, int>
 
 signed main() { WA();
-    int n, m; cin >> n >> m;
-    int x;
-    multiset<int> a; while (n--) {
-        cin >> x; a.insert(x);
-    }
-    while (m--) {
-        cin >> x;
-        if (auto it = a.upper_bound(x); it != a.begin()) cout << *prev(it) << '\n', a.erase(prev(it));
-        else cout << "-1\n";
-    }
+    vector<int> dp(21);
+    dp[0] = dp[1] = 1;
+    for (int i = 2; i < dp.size(); i++) dp[i] = dp[i-1] + dp[i-2];
+    for (int n; cin >> n; cout << dp[n] << '\n');
 }

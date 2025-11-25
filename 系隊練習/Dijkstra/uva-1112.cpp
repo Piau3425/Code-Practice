@@ -5,7 +5,7 @@ using namespace std;
 #define fi first
 #define se second
 #define INF LONG_LONG_MAX/1000
-#define WA() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
+#define WA() cin.tie(0)->sync_with_stdio(0)
 #define all(x) (x).begin(), (x).end()
 #define int long long
 #define PII pair<int, int>
@@ -15,26 +15,24 @@ signed main() { WA();
     for (cin >> N; N--;) {
         int n, e, t, m, a, b, w;
         cin >> n >> e >> t >> m;
-        vector<vector<pair<int, int>>> g(n+1);
+        vector<vector<PII>> g(n+1);
         while (m--) {
             cin >> a >> b >> w;
             g[b].pb({a, w});
         }
 
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        priority_queue<PII, vector<PII>, greater<PII>> pq;
         vector<int> dis(n+1, INF), vis(n+1);
         dis[e] = 0; pq.push({0, e});
 
         while (pq.size()) {
-            int now = pq.top().second; pq.pop();
+            auto [d, now] = pq.top(); pq.pop();
+            if (d > dis[now]) continue;
 
-            if (vis[now]) continue;
-            vis[now] = 1;
-
-            for (auto &[to_idx, to_dis] : g[now]) {
-                if (dis[now] + to_dis < dis[to_idx]) {
-                    dis[to_idx] = dis[now] + to_dis;
-                    pq.push({dis[to_idx], to_idx});
+            for (auto &[toID, toDis] : g[now]) {
+                if (dis[now] + toDis < dis[toID]) {
+                    dis[toID] = dis[now] + toDis;
+                    pq.push({dis[toID], toID});
                 }
             }
         }

@@ -16,7 +16,7 @@ signed main() { WA();
         cout << "Case #" << k << ": ";
         int n, m, s, t; cin >> n >> m >> s >> t;
         vector<vector<PII>> g(n);
-        vector<int> vis(n), dis(n, INF);
+        vector<int> dis(n, INF);
         while (m--) {
             int a, b, w; cin >> a >> b >> w;
             g[a].pb({b, w});
@@ -26,8 +26,7 @@ signed main() { WA();
         pq.push({0, s}); dis[s] = 0;
         while (pq.size()) {
             auto [nowDist, nowID] = pq.top(); pq.pop();
-            if (vis[nowID]) continue;
-            vis[nowID] = 1;
+            if (nowDist > dis[nowID]) continue;
             for (auto [toID, toDist] : g[nowID]) {
                 if (dis[toID] > dis[nowID] + toDist) {
                     dis[toID] = dis[nowID] + toDist;

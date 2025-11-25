@@ -10,15 +10,14 @@ using namespace std;
 #define int long long
 #define PII pair<int, int>
 
+int C(int m, int n) {
+    int ret = 1;
+    for (int i = 1; i <= n; ++i) ret = ret*(m-i+1)/i;
+    return ret;
+}
+
 signed main() { WA();
-    int n, m; cin >> n >> m;
-    int x;
-    multiset<int> a; while (n--) {
-        cin >> x; a.insert(x);
-    }
-    while (m--) {
-        cin >> x;
-        if (auto it = a.upper_bound(x); it != a.begin()) cout << *prev(it) << '\n', a.erase(prev(it));
-        else cout << "-1\n";
-    }
+    int m; cin >> m;
+    int k = C(m, 6);
+    cout << k << '\n' << k*50 << '\n' << fixed << setprecision(2) << (double)k/C(49, 6)*100 << "%\n";
 }

@@ -11,14 +11,9 @@ using namespace std;
 #define PII pair<int, int>
 
 signed main() { WA();
-    int n, m; cin >> n >> m;
-    int x;
-    multiset<int> a; while (n--) {
-        cin >> x; a.insert(x);
-    }
-    while (m--) {
-        cin >> x;
-        if (auto it = a.upper_bound(x); it != a.begin()) cout << *prev(it) << '\n', a.erase(prev(it));
-        else cout << "-1\n";
-    }
+    string s, a, b;
+    getline(cin, s);
+    cin >> a >> b;
+    for (int pos = 0; (pos = s.find(a, pos)) != string::npos; pos += b.size()) s.replace(pos, a.size(), b);
+    cout << s << '\n';
 }

@@ -11,14 +11,12 @@ using namespace std;
 #define PII pair<int, int>
 
 signed main() { WA();
-    int n, m; cin >> n >> m;
-    int x;
-    multiset<int> a; while (n--) {
-        cin >> x; a.insert(x);
+    int a, b, c, d; cin >> a >> b >> c >> d;
+    int ans = 0, now = 1;
+    for (int i = 1; i <= b; now++) {
+        if (now%a) ans += c, i++;
+        else ans += d;
     }
-    while (m--) {
-        cin >> x;
-        if (auto it = a.upper_bound(x); it != a.begin()) cout << *prev(it) << '\n', a.erase(prev(it));
-        else cout << "-1\n";
-    }
+    if (!(now%a)) ans += d; 
+    cout << ans;
 }
