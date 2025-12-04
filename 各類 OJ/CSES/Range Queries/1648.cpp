@@ -1,6 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+#define pb push_back
+#define fi first
+#define se second
+#define INF LONG_LONG_MAX/1000
+#define WA() cin.tie(0)->sync_with_stdio(0)
+#define all(x) (x).begin(), (x).end()
 #define int long long
+#define PII pair<int, int>
 
 vector<int> v, bit;
 int n, m;
@@ -16,7 +24,7 @@ int get(int a, int b) {
     return sb-sa;
 }
 
-signed main() { ios::sync_with_stdio(0); cin.tie(0);
+signed main() { WA();
     cin >> n >> m;
     v.resize(n+1); bit.resize(n+1, 0);
     for (int i = 1; i <= n; i++) {

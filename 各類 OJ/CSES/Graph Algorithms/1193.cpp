@@ -30,9 +30,7 @@ signed main() { WA();
     q.push({sx, sy});
     while (q.size()) {
         auto [x, y] = q.front(); q.pop();
-        if (ex == x && ey == y) {
-            break;
-        }
+        if (ex == x && ey == y) break;
         if (vis[x][y]) continue;
         vis[x][y] = 1;
         for (int i = 0; i < 4; i++) {

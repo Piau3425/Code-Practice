@@ -2,7 +2,7 @@
 using namespace std;
 
 #define pb push_back
-#define WA() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
+#define WA() cin.tie(0)->sync_with_stdio(0)
 #define sz(x) ((int)(x).size())
 
 int main() { WA();

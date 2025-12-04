@@ -5,7 +5,7 @@ using namespace std;
 #define fi first
 #define se second
 #define INF LONG_LONG_MAX/1000
-#define WA() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
+#define WA() cin.tie(0)->sync_with_stdio(0)
 #define all(x) (x).begin(), (x).end()
 #define int long long
 #define PII pair<int, int>
@@ -34,7 +34,7 @@ void upd(int idx, int ql, int qr, int now, int k) {
 int query(int l, int r, int ql, int qr, int now) {
     if (l <= ql && qr <= r) return tree[now];
 
-    int m = (ql+qr) / 2, sum = 0, mnL, mnR; mnL = mnR = 1e9;
+    int m = (ql+qr) / 2, mnL, mnR; mnL = mnR = 1e9;
     if (l <= m) mnL = query(l, r, ql, m, lc);
     if (r >= m+1) mnR = query(l, r, m+1, qr, rc);
     return min(mnL, mnR);

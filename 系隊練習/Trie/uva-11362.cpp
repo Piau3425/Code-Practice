@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define WA() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
+#define WA() cin.tie(0)->sync_with_stdio(0)
 
 bool checker;
 
