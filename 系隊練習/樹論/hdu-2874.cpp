@@ -30,7 +30,7 @@ int lca(int a, int b) {
     if (a == b) return a;
     for (int i = 19; i >= 0; i--) if (par[i][a] != par[i][b]) a = par[i][a], b = par[i][b];
     if (par[0][a] != par[0][b]) return -1;
-    else return par[0][a];
+    return par[0][a];
 }
 
 signed main() { WA();
