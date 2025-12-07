@@ -11,10 +11,13 @@ using namespace std;
 #define PII pair<int, int>
 
 signed main() { WA();
-    int n, sum = 0; cin >> n;
+    int n; cin >> n;
     vector<int> v(n);
-    for (auto &i : v) cin >> i, sum += i;
-    sort(all(v));
-    if (v.back() > sum-v.back()) cout << v.back()*2;
-    else cout << sum;
+    for (auto &i : v) cin >> i;
+    stack<int> sk;
+    for (auto &i : v) {
+        while (sk.size() && i <= v[sk.top()]) sk.pop();
+        cout << (sk.size() ? sk.top()+1 : 0) << ' ';
+        sk.push(&i-v.data());
+    }
 }
