@@ -14,14 +14,11 @@ signed main() { WA();
     int n; cin >> n;
     vector<PII> v(n);
     for (auto &i : v) cin >> i.fi >> i.se;
-    sort(all(v), [](PII a, PII b){
-        if (a.se == b.se) return a.fi > b.fi;
-        return a.se < b.se;
-    });
-    int now, cnt; now = cnt = 0;
-    for (auto &[sta, ed] : v) {
-        if (now < sta) now = ed;
-        cnt++;
+    sort(all(v));
+    int now, ans; now = ans = 0;
+    for (auto &[dur, dl] : v) {
+        now += dur;
+        ans += dl-now;
     }
-    
+    cout << ans;
 }
