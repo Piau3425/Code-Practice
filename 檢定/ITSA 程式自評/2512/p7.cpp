@@ -24,8 +24,7 @@ signed main() { WA();
     for (auto &[w, aa, bb] : v) {
         if (!a[aa] && !b[bb]) {
             cout << "Company " << aa << " pair with Talent " << bb << '\n';
-            a[aa] = 1;
-            b[bb] = 1;
+            a[aa] = 1; b[bb] = 1;
         }
     }
 }
