@@ -11,5 +11,14 @@ using namespace std;
 #define PII pair<int, int>
 
 signed main() { WA();
-
+    int n, x, p = 1e9+7; cin >> n >> x;
+    vector<int> v(n), dp(1000001); dp[0] = 1;
+    for (auto &i : v) cin >> i;
+    for (auto &j : v) {
+        for (int i = j; i <= x; i++) {
+            dp[i] += dp[i-j];
+            if (dp[i] >= p) dp[i] -= p;
+        }
+    }
+    cout << dp[x] << '\n';
 }

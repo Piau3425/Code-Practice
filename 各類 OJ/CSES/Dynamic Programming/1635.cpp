@@ -12,14 +12,15 @@ using namespace std;
 
 signed main() { WA();
     int n, x, p = 1e9+7; cin >> n >> x;
-    vector<int> v(n), dp(x+1);
-    for (auto &i : v) {
-        cin >> i;
-        if (i <= x) dp[i] = 1;
-    }
-    for (int i = 0; i <= x; i++) {
+    vector<int> v(n), dp(x+1); dp[0] = 1;
+    for (auto &i : v) cin >> i; sort(all(v));
+    for (int i = 1; i <= x; i++) {
         for (auto &j : v) {
-            if (i-j >= 0) dp[i] = (dp[i] + dp[i-j])%p;
+            if (i-j >= 0) {
+                dp[i] += dp[i-j];
+                if (dp[i] >= p) dp[i] -= p;
+            }
+            else break;
         }
     }
     cout << dp[x] << '\n';
