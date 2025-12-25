@@ -18,7 +18,7 @@ signed main() { WA();
         for (auto &i : v) cin >> i;
         int cnt, sum; cnt = sum = 1;
         for (int i = 1; i+1 < n; i++) {
-            if (sum + v[i] < v[i+1]) cnt++, sum += v[i], cout << v[i] << ' ';
+            if (sum + v[i] < v[i+1]) cnt++, sum += v[i];//, cout << v[i] << ' ';
         }
         cout << cnt+1 << '\n';
     }

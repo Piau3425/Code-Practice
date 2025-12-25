@@ -12,5 +12,7 @@ using namespace std;
 
 signed main() { WA();
     int n; cin >> n;
-    cout << (n/2+1)*(n/2+1+(n&1));
+    vector<int> v = {40, 70, 90};
+    if (n >= 90) cout << "expert";
+    else cout << *upper_bound(all(v), n)-n;
 }

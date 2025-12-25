@@ -12,5 +12,5 @@ using namespace std;
 
 signed main() { WA();
     int n; cin >> n;
-    cout << (n/2+1)*(n/2+1+(n&1));
+    cout << abs(n);
 }

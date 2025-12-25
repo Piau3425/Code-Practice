@@ -11,6 +11,10 @@ using namespace std;
 #define PII pair<int, int>
 
 signed main() { WA();
-    int n; cin >> n;
-    cout << (n/2+1)*(n/2+1+(n&1));
+    char *(*(*foo[2][3])(int))[4];
+    int (*boo[2])(int);
+    boo[0] = [](int a){
+        return a+10;
+    };
+    cout << boo[0](10);
 }

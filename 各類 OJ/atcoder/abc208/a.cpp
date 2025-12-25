@@ -11,6 +11,8 @@ using namespace std;
 #define PII pair<int, int>
 
 signed main() { WA();
-    int n; cin >> n;
-    cout << (n/2+1)*(n/2+1+(n&1));
+    int a, b;
+    cin >> a >> b;
+    if (a*6 >= b && b >= a) cout << "Yes";
+    else cout << "No";
 }

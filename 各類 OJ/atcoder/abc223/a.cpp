@@ -12,5 +12,6 @@ using namespace std;
 
 signed main() { WA();
     int n; cin >> n;
-    cout << (n/2+1)*(n/2+1+(n&1));
+    if (!n || n%100) cout << "No";
+    else cout << "Yes";
 }
