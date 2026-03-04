@@ -10,10 +10,6 @@ using namespace std;
 #define int long long
 #define PII pair<int, int>
 
-void solve() {
-    
-}
-
 signed main() { WA();
     
 }

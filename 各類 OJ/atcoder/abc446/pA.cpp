@@ -10,10 +10,8 @@ using namespace std;
 #define int long long
 #define PII pair<int, int>
 
-void solve() {
-    
-}
-
 signed main() { WA();
-    
+    string s; cin >> s;
+    cout << "Of";
+    for (auto &c : s) cout << char(tolower(c));
 }

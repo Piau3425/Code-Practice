@@ -10,10 +10,14 @@ using namespace std;
 #define int long long
 #define PII pair<int, int>
 
-void solve() {
-    
-}
-
 signed main() { WA();
-    
+    int t;
+    for (cin >> t; t--;) {
+        int n, ans = 1; cin >> n;
+
+        for (int i = 2; i*i <= n; i++) if (!(n % i)) for (ans *= i; !(n % i); n /= i);
+        if (n > 1) ans *= n;
+        
+        cout << ans << '\n';
+    }
 }

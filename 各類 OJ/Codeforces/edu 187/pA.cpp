@@ -10,10 +10,7 @@ using namespace std;
 #define int long long
 #define PII pair<int, int>
 
-void solve() {
-    
-}
-
 signed main() { WA();
-    
+    int t, n, m, d;
+    for (cin >> t; t--;) cin >> n >> m >> d, cout << (n+d/m)/(d/m+1) << '\n';
 }

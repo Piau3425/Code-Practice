@@ -10,10 +10,12 @@ using namespace std;
 #define int long long
 #define PII pair<int, int>
 
-void solve() {
-    
-}
-
 signed main() { WA();
-    
-}
+    int n, mx = -1e9;
+    unordered_map<int, int> mp;
+    for (cin >> n; n--;) {
+        int x; cin >> x;
+        mx = max(mx, mp[x] = mp[x-1] + 1); 
+    }
+    cout << mx;
+}   

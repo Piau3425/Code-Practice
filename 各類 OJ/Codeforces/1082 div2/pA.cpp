@@ -10,10 +10,10 @@ using namespace std;
 #define int long long
 #define PII pair<int, int>
 
-void solve() {
-    
-}
-
 signed main() { WA();
-    
+    int t, x, y;
+    for (cin >> t; t--;) {
+        cin >> x >> y;
+        if ((x-2*y)%3 == 0 && (y >= 0 ? x >= 2*y : x >= -4*y)) cout << "YES\n"; else cout << "NO\n";
+    }
 }

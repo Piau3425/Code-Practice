@@ -15,5 +15,13 @@ void solve() {
 }
 
 signed main() { WA();
-    
+    vector<int> v;int n; cin >> n;
+    for (int x; cin >> x;) {
+        if (x) v.pb(x);
+    }
+    sort(all(v));
+    int sum = 0;
+    for (int i = 1; i < v.size()-1; i++) sum += v[i];
+    sum /= v.size()-2;
+    cout << sum;
 }

@@ -15,5 +15,5 @@ void solve() {
 }
 
 signed main() { WA();
-    
+    cout << "[SYSTEM] Booting...\nHello, FunAI!";
 }

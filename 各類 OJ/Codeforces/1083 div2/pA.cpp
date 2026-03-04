@@ -10,10 +10,14 @@ using namespace std;
 #define int long long
 #define PII pair<int, int>
 
-void solve() {
-    
-}
-
 signed main() { WA();
-    
+    int t;
+    for (cin >> t; t--;) {
+        int n; cin >> n;
+        vector<int> v(n); for (auto &i : v) cin >> i;
+
+        swap(v[0], *max_element(all(v)));
+        
+        for (auto &i : v) cout << i << " \n"[&i == &v.back()];
+    }
 }

@@ -11,9 +11,12 @@ using namespace std;
 #define PII pair<int, int>
 
 signed main() { WA();
-    int A = 5, &n = A;
-    cout << A << ' ' << n << '\n';
-    A -= 3;
-    cout << A << ' ' << n << '\n';
-    cout << &A << ' ' << &n << '\n';
+    ifstream f("./onered.bmp", ios::binary);
+    
+    int n = 8;
+    vector<unsigned char> v(n);
+    f.read(reinterpret_cast<char*>(v.data()), n);
+    cout << hex << uppercase << setfill('0');
+    for (int i = 0; i < n; i++) cout << setw(2) << (int)v[i] << ' ';
+    cout << '\n' << dec;
 }

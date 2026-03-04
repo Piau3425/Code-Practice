@@ -10,10 +10,11 @@ using namespace std;
 #define int long long
 #define PII pair<int, int>
 
-void solve() {
-    
-}
-
 signed main() { WA();
-    
+    int t; for (cin >> t; t--;) {
+        int k, ans = 1; string s;
+        cin >> k >> s;
+        for (int i = 0; i < k; i++) if (s[i] != s[(i+1)%k]) ans++;
+        cout << min(k, ans) << '\n';
+    }
 }
