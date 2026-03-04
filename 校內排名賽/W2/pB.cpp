@@ -11,5 +11,9 @@ using namespace std;
 #define PII pair<int, int>
 
 signed main() { WA();
-    
+    string s; cin >> s; cin.ignore();
+    int mx = -1e9;
+    vector<int> v(26);
+    while (getline(cin, s)) for (auto &c : s) if (isalpha(c)) mx = max(++v[toupper(c)-'A'], mx);
+    for (int i = mx; mx; mx--) for (int j = 0; j < 26; j++) if (v[j] == mx) cout << char(j+'A') << ' ' << mx << '\n';
 }

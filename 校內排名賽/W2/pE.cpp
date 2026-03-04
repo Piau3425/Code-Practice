@@ -10,6 +10,11 @@ using namespace std;
 #define int long long
 #define PII pair<int, int>
 
+vector<int> coin = {5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000};
+
 signed main() { WA();
-    
+    vector<int> v(30000+1); v[0] = 1;
+    for (auto c : coin) for (int i = c; i < v.size(); i++) v[i] += v[i-c];
+
+    for (double n; cin >> n, round(n*100);) cout << setw(6) << fixed << setprecision(2) << n << setw(17) << v[round(n*100)] << '\n';
 }
