@@ -13,7 +13,6 @@ using namespace std;
 signed main() { WA();
     int n, m, t = 0;
     while (cin >> n >> m, n+m) {
-        if (t) cout << '\n';
         vector<vector<int>> v(n+1, vector<int>(m+1));
         vector<int> a(n), b(m);
         for (auto &i : a) cin >> i;

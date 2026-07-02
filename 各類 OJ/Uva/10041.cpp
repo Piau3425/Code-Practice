@@ -1,23 +1,24 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
-int main(){
-    int n, m, index, sum;
-    cin >> n;
-    while(n--){
-        cin >> m;
-        vector<int> v(m);
-        sum = 0;
-        for(int i = 0; i < m; i++)
-            cin >> v[i];
-        sort(v.begin(), v.end());
+#define pb push_back
+#define fi first
+#define se second
+#define INF LONG_LONG_MAX/1000
+#define WA() cin.tie(0)->sync_with_stdio(0)
+#define all(x) (x).begin(), (x).end()
+#define int long long
+#define PII pair<int, int>
 
-        index = (m/2)-1 + (m%2);
-        for(int i = 0; i < m; i++)
-            sum += abs(v[index] - v[i]);
+signed main() { WA();
+    int n, m;
+    for (cin >> n; n--;) {
+        cin >> m; vector<int> v(m);
+        for (auto &i : v) cin >> i;
+        sort(all(v));
 
+        int sum = 0;
+        for(int i = 0; i < m; i++) sum += abs(v[(m/2)-1 + (m%2)] - v[i]);
         cout << sum << '\n';
     }
 }

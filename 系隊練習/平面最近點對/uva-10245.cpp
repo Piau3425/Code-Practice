@@ -18,8 +18,7 @@ void f(int l, int r) {
 
     int m = (l+r)/2;
     double midx = v[m].fi;
-    f(l, m);
-    f(m, r);
+    f(l, m); f(m, r);
 
     inplace_merge(v.begin()+l, v.begin()+m, v.begin()+r, [](PDD a, PDD b){
         return a.se < b.se;

@@ -1,34 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
- 
+
 #define pb push_back
 #define fi first
 #define se second
-#define INF 0x3f3f3f3f
+#define INF LONG_LONG_MAX/1000
 #define WA() cin.tie(0)->sync_with_stdio(0)
 #define all(x) (x).begin(), (x).end()
-#define sz(x) ((int)(x).size())
 #define int long long
+#define PII pair<int, int>
 
 signed main() { WA();
-    int n, tmp;
-    string s;
+    int n, k; string s;
     getline(cin, s);
     while (getline(cin, s)) {
-        vector<int> a;
+        vector<int> a, b;
         stringstream ss(s);
-        while (ss >> tmp) a.pb(tmp);
+        while (ss >> k) a.pb(k);
         n = a.size();
         while (getline(cin, s) && s.size() > 2) {
-            vector<int> b;
-            ss.clear();
-            ss.str(s);
-            while (ss >> tmp) b.pb(tmp);
-            vector<int> dp(n, 1), c(n);
+            b.clear();
+            stringstream sss(s);
+            vector<int> dp, c(n);
+            while (sss >> k) b.pb(k);
             for (int i = 0; i < n; i++) c[a[i]-1] = b[i];
-            for (int i = 0; i < n; i++) for (int j = i+1; j < n; j++)
-                if (c[i] < c[j]) dp[j] = max(dp[j], dp[i]+1);
-            cout << *max_element(all(dp)) << '\n';
+            for (auto &i : c) {
+                if (dp.empty() || i > dp.back()) dp.pb(i);
+                else *lower_bound(all(dp), i) = i;
+            }
+            cout << dp.size() << '\n';
         }
     }
 }

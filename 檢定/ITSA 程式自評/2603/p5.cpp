@@ -11,14 +11,13 @@ using namespace std;
 #define PII pair<int, int>
 
 signed main() { WA();
-    string s; int total = 0;
-    while (getline(cin, s)) {
-        string now;
-        for (auto &c : s) {
-            if (isdigit(c)) now += c;
-            else if (now.size()) total += stoi(string(now.rbegin(), now.rend())), now.clear();
-        }
-        if (now.size()) total += stoi(string(now.rbegin(), now.rend()));
+    string num;
+    char c;
+    int total = 0;
+    while (cin.get(c)) {
+        if (isdigit(c)) num += c;
+        else if (num.size()) total += stoi(string(num.rbegin(), num.rend())), num.clear();
     }
+    if (num.size()) total += stoi(string(num.rbegin(), num.rend()));
     cout << total << '\n';
 }

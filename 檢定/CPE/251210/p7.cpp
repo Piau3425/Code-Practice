@@ -32,12 +32,10 @@ int dfs(int u, int mn) {
     if (u == t) return mn;
 
     for (int &v = cur[u]; v < n*2; v++) {
-        if (dep[u]+1 == dep[v] && g[u][v]) {
-            if (int go = dfs(v, min(mn, g[u][v]))) {
-                g[u][v] -= go;
-                g[v][u] += go;
-                return go;
-            }
+        if (dep[u]+1 == dep[v] && g[u][v]) if (int go = dfs(v, min(mn, g[u][v]))) {
+            g[u][v] -= go;
+            g[v][u] += go;
+            return go;
         }
     }
     return 0;
