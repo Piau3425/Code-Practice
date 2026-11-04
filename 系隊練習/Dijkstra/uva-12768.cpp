@@ -45,3 +45,8 @@ signed main() { WA();
         else cout << "Unlimited!\n";
     }
 }
+
+
+0: (2,3), (1,4)
+1:
+2:
