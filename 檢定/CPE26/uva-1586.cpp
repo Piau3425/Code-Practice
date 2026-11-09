@@ -17,9 +17,28 @@ using namespace __gnu_pbds;
 template<typename T>
 using rbtree = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
+map<char, double> mp = {
+    {'C', 12.01},
+    {'H', 1.008},
+    {'O', 16},
+    {'N', 14.01}
+};
+
 signed main() { WA();
     int t; for (cin >> t; t--;) {
         string s; cin >> s;
-        
+        char ele = '~'; double sum = 0, now = 0;
+        for (auto &c : s) {
+            if (isdigit(c)) {
+                now = now*10+c-'0';
+            }
+            else {
+                if (now != '~') sum += mp[ele]*max(1.0, now);
+                ele = c;
+                now = 0;
+            }
+        }
+
+        cout << fixed << setprecision(3) << sum + mp[ele]*max(1.0, now) << '\n';
     }
 }

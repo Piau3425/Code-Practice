@@ -37,7 +37,6 @@ signed main() { WA();
         queue<TIII> que; int ans = -1;
         for (que.push({sx, sy, 0}); que.size();) {
             auto [x, y, step] = que.front(); que.pop();
-            //cout << x << ' ' << y << ' ' << step << '\n';
             if (x == ex && y == ey) {
                 ans = step;
                 break;
